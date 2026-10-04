@@ -1,11 +1,10 @@
 {
-  "version": "2026-10-04-judge-fixes-finance-v4",
+  "version": "2026-10-04-FinPilot-wealth-management",
   "repository": "https://github.com/gr-peng/gonghang",
   "branch": "main",
   "upstream": "https://github.com/gr-peng/FinTechathon",
   "upstream_base_commit": "8a68b0ce23047aa0fb11e1ed5484af7e4010d9aa",
   "upstream_note": "Current working application includes later changes beyond this historical commit.",
-  "portable_source_bundle_sha256": "68f4651088a2c2b9686652e0b40f4b9f681b49391714f4b6d28eb9928e853bef",
   "model": "qingcai-qwen3-4b-finance-v4",
   "adapter_sha256": "b7445ac2453391471483c4f4ed73a797e8380dcb314c49646bda7024b9b01e9e",
   "portrait_max_width_px": 430,
@@ -33,11 +32,15 @@
     "base model weights"
   ],
   "publishing_changes": [
-    "repository README and directory navigation",
-    "public documentation status",
-    "portable configuration comment",
-    "organized materials",
-    "ignore rules, original executable modes and byte-preserving attributes"
+    "public display name changed to FinPilot",
+    "wealth management track assessment and factual scope",
+    "PPT/PDF and demonstration narrative",
+    "portable presentation rendering and backward-compatible material URLs"
   ],
-  "runtime_source_files_equal_to_deployed_checkout": 379
+  "runtime_source_files_equal_to_deployed_checkout": 379,
+  "name": "FinPilot",
+  "subtitle": "可解释财富管理智能体",
+  "icbc_track": "财富管理服务",
+  "previous_publication_commit": "5db475e2bd0094cf690e72c04ae28b2d368373a8",
+  "original_portable_source_bundle_sha256": "68f4651088a2c2b9686652e0b40f4b9f681b49391714f4b6d28eb9928e853bef"
 }

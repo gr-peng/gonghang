@@ -30,7 +30,7 @@ def read_env():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='青财 / FinTechathon 一键启动')
+    parser = argparse.ArgumentParser(description='FinPilot / FinTechathon 一键启动')
     parser.add_argument('--no-install', action='store_true', help='使用当前 Python 中已安装的依赖')
     parser.add_argument('--no-browser', action='store_true')
     parser.add_argument('--host', default='127.0.0.1', help='监听地址；局域网演示可设为 0.0.0.0')
@@ -133,7 +133,7 @@ def main():
             raise RuntimeError('服务启动超时，请查看 .runtime 中的日志。')
         if args.demo:
             subprocess.run([sys.executable, str(ROOT / 'scripts' / 'seed_demo.py')], check=True, env=env)
-        print(f'\n青财已启动：http://localhost:{frontend_port}', flush=True)
+        print(f'\nFinPilot已启动：http://localhost:{frontend_port}', flush=True)
         print(f'记账 API：http://localhost:{book_port}/docs\n投研 API：http://localhost:{trader_port}/docs', flush=True)
         print('按 Ctrl+C 同时关闭三个服务。日志位于 .runtime/。', flush=True)
         if not args.no_browser:

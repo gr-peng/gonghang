@@ -65,7 +65,7 @@ export function createStatements(ctx) {
     },
     'statement-template':()=>{
       const text='\ufeff日期,收支,金额,摘要,分类,流水号,资金性质\n2026-09-01,收入,6800.00,税后工资,工资,EXAMPLE-001,收支\n2026-09-02,支出,36.50,午餐,餐饮,EXAMPLE-002,收支\n2026-09-03,支出,500.00,转入自己的储蓄账户,其他,EXAMPLE-003,内部划转\n';
-      const url=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='青财流水示例.csv';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      const url=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='FinPilot流水示例.csv';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     }
   };
   return {pages:{import:importPage},actions,onChange,onInput:onChange,onSubmit};

@@ -52,14 +52,14 @@ export function createJourney(ctx) {
     operation=op;
     const status=statuses[op.status]||'待处理', needs=['needs_confirmation','needs_mfa'].includes(op.status);
     const hidden=prefs.mask&&!revealed;
-    const accountName=id=>id==='acct-user'?'青财体验账户':id==='fund-reserve'?'灵活现金':id==='fund-growth'?'长期均衡':snapshot?.recipients.find(r=>r.id===id)?.name||'体验账户';
+    const accountName=id=>id==='acct-user'?'FinPilot体验账户':id==='fund-reserve'?'灵活现金':id==='fund-growth'?'长期均衡':snapshot?.recipients.find(r=>r.id===id)?.name||'体验账户';
     const detail=hidden?'已隐藏':`${esc(op.target_name)}<br>${esc(op.target_detail)}`;
     modal(needs?'核对操作':status,`<div class="confirmation-status ${op.status==='succeeded'?'good':''}">${icon(op.status==='succeeded'?'check':'shield')}<strong>${status}</strong><span class="tag">体验</span></div><p class="hero-amount center money">${hidden?'••••':plainCash(op.params.amount_minor)}</p><dl class="confirmation-details"><dt>操作</dt><dd>${esc(op.label)}</dd><dt>转出账户</dt><dd>${hidden?'已隐藏':esc(accountName(op.params.from_account))}</dd><dt>转入</dt><dd>${detail}</dd></dl>${hidden?btn('显示完整参数','journey-reveal','glass finance-wide'):''}${['unknown','blocked','expired'].includes(op.status)&&op.message?`<p class="dialog-message">${esc(op.message)}</p>`:''}${needs?`<form id="finance-confirm-form">${op.status==='needs_mfa'?(snapshot?.mfa_enabled?field('动态验证码','finance-code',input('finance-code','','inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required')):btn('配置动态验证码','journey-mfa','glass finance-wide')):''}${feedback('finance-confirm-error')}<div class="actions">${btn('取消操作','journey-cancel','','type="button"')}<button type="submit" class="btn primary" ${hidden||op.status==='needs_mfa'&&!snapshot?.mfa_enabled?'disabled':''}>${op.status==='needs_mfa'?'验证并确认':'确认操作'}</button></div></form>`:op.status==='unknown'?`<p class="dialog-message">结果待核实，请勿重新提交。</p>${btn('核实银行记录','journey-reconcile','primary finance-wide')}`:`<div class="confirmation-receipt">${op.receipt_hash?`<span>回执</span><code>${esc(op.receipt_hash.slice(0,16))}</code>`:''}</div>${btn('完成','journey-done','primary finance-wide')}`}`);
   }
 
   async function bankPage(paint) {
     paint(loading());const s=await load();
-    paint(card(`<div class="row between"><h2>青财账户</h2><span class="tag">体验</span></div><p class="hero-amount money">${cash(s.cash_minor)}</p><div class="actions">${btn('转账','journey-transfer','primary')}${btn('导入流水','statement-import','glass')}</div>`)+
+    paint(card(`<div class="row between"><h2>FinPilot账户</h2><span class="tag">体验</span></div><p class="hero-amount money">${cash(s.cash_minor)}</p><div class="actions">${btn('转账','journey-transfer','primary')}${btn('导入流水','statement-import','glass')}</div>`)+
       card(`<h2 class="mb">常用收款人</h2>${s.recipients.map(r=>`<button class="finance-contact" data-action="journey-contact" data-recipient="${esc(r.id)}"><span class="stock-symbol">${esc(r.name[0])}</span><span class="grow"><strong>${esc(r.name)}</strong><span>${prefs.mask?'••••':esc(r.phone)}</span></span>${icon('next')}</button>`).join('')}`)+
       card(`<div class="row between mb"><h2>最近操作</h2>${btn('全部','journey-security','small')}</div>${operationRows(s.operations.slice(0,5))}`));
   }
@@ -80,7 +80,7 @@ export function createJourney(ctx) {
 
   async function setupMFA() {
     const data=await finance('/mfa/setup',{method:'POST',body:{}});
-    modal('开启动态验证码',`<form id="finance-mfa-form"><p class="dialog-message">用验证器扫码，再输入六位验证码。</p><img class="mfa-qr" src="${esc(data.qr)}" alt="青财动态验证码配置二维码"><details><summary>手动输入密钥</summary><code class="mfa-secret">${esc(data.secret)}</code></details>${field('验证码','finance-activation-code',input('finance-activation-code','','inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required'))}${feedback('finance-mfa-error')}<button type="submit" class="btn primary finance-wide">验证并开启</button></form>`);
+    modal('开启动态验证码',`<form id="finance-mfa-form"><p class="dialog-message">用验证器扫码，再输入六位验证码。</p><img class="mfa-qr" src="${esc(data.qr)}" alt="FinPilot动态验证码配置二维码"><details><summary>手动输入密钥</summary><code class="mfa-secret">${esc(data.secret)}</code></details>${field('验证码','finance-activation-code',input('finance-activation-code','','inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required'))}${feedback('finance-mfa-error')}<button type="submit" class="btn primary finance-wide">验证并开启</button></form>`);
   }
 
   async function submit(event) {

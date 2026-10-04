@@ -1,10 +1,10 @@
-# 青财 · 青年资金服务助手
+# FinPilot · 可解释财富管理智能体
 
-把记账、收支可视化、生活目标、投资研究和可核对的模拟银行操作连接起来的比赛原型。
+面向工行杯「财富管理服务」方向，将账单核对、现金流、目标预留、风险约束、方案比较和模拟操作连接起来。详见[赛道适配评估与待补强项](docs/competition/ICBC-WEALTH.md)。
 
-本仓库收录 **2026-10-04 当前版本**：19 个页面，所有屏幕保持最大 430px 的竖版布局，统一透明 Liquid Glass；包含评委体验修复、已微调的 finance-v4 LoRA 适配器，以及同版本答辩材料。
+本仓库收录 **2026-10-04 FinPilot 财富管理版**：19 个页面，所有屏幕保持最大 430px 的竖版布局，统一透明 Liquid Glass；包含评委体验修复、已微调的 finance-v4 LoRA 适配器，以及同版本答辩材料。当前是现金流驱动的个人资金管理原型；完整资产负债、按需术语解释和真实用户理解验证列为待补强项。
 
-[答辩 PPT](materials/Qingcai-presentation.pptx) · [PDF 预览](materials/Qingcai-presentation.pdf) · [参赛文档](docs/competition/README.md) · [部署说明](docs/competition/DEPLOYMENT.md) · [版本与验证](materials/README.md)
+[答辩 PPT](materials/FinPilot-presentation.pptx) · [PDF 预览](materials/FinPilot-presentation.pdf) · [参赛文档](docs/competition/README.md) · [部署说明](docs/competition/DEPLOYMENT.md) · [版本与验证](materials/README.md)
 
 ## 当前功能
 

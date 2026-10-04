@@ -429,7 +429,7 @@ class FinanceWorkspace:
         if request.method not in {'GET', 'HEAD'}:
             origins = os.getenv('FINANCE_PUBLIC_ORIGINS', f"http://127.0.0.1:{os.getenv('FRONTEND_PORT', '5500')},http://localhost:{os.getenv('FRONTEND_PORT', '5500')}").split(',')
             if request.headers.get('Origin') not in origins or not hmac.compare_digest(request.headers.get('X-Qingcai-CSRF', ''), row['csrf']):
-                raise HTTPException(403, '请在青财页面内确认此操作')
+                raise HTTPException(403, '请在FinPilot页面内确认此操作')
         return row['session_id']
 
     def credential(self, sid: str, *, operator=False) -> str:
@@ -663,7 +663,7 @@ class FinanceWorkspace:
             source, target, label = product['account'], 'acct-user', '赎回'
         return {'from_account': source, 'to_account': target, 'amount_minor': amount}, {
             'kind': data.kind, 'product_id': product['id'], 'label': label + product['name'],
-            'target_name': product['name'] if data.kind == 'subscribe' else '青财体验账户',
+            'target_name': product['name'] if data.kind == 'subscribe' else 'FinPilot体验账户',
             'target_detail': '模拟本金划转', 'input': data.model_dump()}
 
     def public_operation(self, row, *, include_challenge=True) -> dict:

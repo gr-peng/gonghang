@@ -80,7 +80,7 @@ with sync_playwright() as pw:
   p.locator('#finance-confirmed').check();p.locator('#finance-profile-form button[type=submit]').click();expect(p.locator('h1')).to_have_text('投资');ready();shot('incomplete-cashflow')
   s=overview();assert not s['planning']['ready'] and s['investable_minor']==0 and not s['products'][1]['eligible']
   visit('holdings');expect(p.locator('[data-holding-product="growth"] [data-action="journey-subscribe"]')).to_be_disabled();shot('holdings-incomplete');check('Salary-only import cannot unlock long-term product or display available funding')
-  visit('bank');act('journey-transfer');p.locator('#finance-amount').fill('80');p.locator('#finance-operation-form button[type=submit]').click();expect(p.locator('#sheet')).to_contain_text('青财体验账户');expect(p.locator('#sheet')).to_contain_text('小林');assert 'acct-' not in p.locator('#sheet').inner_text();shot('confirmation');act('journey-cancel');check('Confirmation uses understandable account names; cancellation preserves money')
+  visit('bank');act('journey-transfer');p.locator('#finance-amount').fill('80');p.locator('#finance-operation-form button[type=submit]').click();expect(p.locator('#sheet')).to_contain_text('FinPilot体验账户');expect(p.locator('#sheet')).to_contain_text('小林');assert 'acct-' not in p.locator('#sheet').inner_text();shot('confirmation');act('journey-cancel');check('Confirmation uses understandable account names; cancellation preserves money')
   assert not report['javascript_errors'],report['javascript_errors']
   report['final_bill_count']=get('/health')['bill_count'];report['cash_minor']=overview()['cash_minor'];assert report['cash_minor']==5000000
   check('Isolated fixture writes only, no bank movement, no JavaScript errors')

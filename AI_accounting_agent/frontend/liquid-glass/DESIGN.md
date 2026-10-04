@@ -1,4 +1,4 @@
-# 青财 · Quiet Glass 数据界面
+# FinPilot · Quiet Glass 数据界面
 
 本规范延续当前 Liquid Glass，参考 Stitch Design Taste 的层级、留白、网格与交互原则。用户的简洁要求优先：数据图表不使用装饰照片、无穷动效或常驻教程文案。所有图形展示真实 API 数据，不为构图虚构数字。
 

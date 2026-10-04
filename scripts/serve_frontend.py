@@ -14,18 +14,26 @@ parser.add_argument('--host', default='127.0.0.1')
 parser.add_argument('--demo', action='store_true')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1] / 'AI_accounting_agent' / 'frontend' / 'liquid-glass'
-materials_root = Path(__file__).resolve().parents[1] / 'artifacts' / 'submission-20261003'
+project_root = Path(__file__).resolve().parents[1]
+materials_root = project_root / 'artifacts' / 'submission-20261003'
 MATERIALS = {'Qingcai-presentation.pdf', 'Qingcai-presentation.pptx', 'Qingcai-source.zip',
-             'Qingcai-documents.zip', 'VALIDATION.json'}
+             'Qingcai-documents.zip', 'FinPilot-presentation.pdf', 'FinPilot-presentation.pptx',
+             'FinPilot-source.zip', 'FinPilot-documents.zip', 'VALIDATION.json'}
 
 
 class Handler(SimpleHTTPRequestHandler):
     def material(self):
         name = self.path.removeprefix('/__materials/')
-        if name not in MATERIALS or not (materials_root/name).is_file():
+        if name not in MATERIALS:
             self.send_error(404)
             return
-        path=materials_root/name
+        canonical=name.replace('Qingcai-','FinPilot-',1)
+        candidates=[materials_root/canonical,project_root/'materials'/canonical,materials_root/name]
+        if name=='VALIDATION.json':candidates.append(project_root/name)
+        path=next((candidate for candidate in candidates if candidate.is_file()),None)
+        if path is None:
+            self.send_error(404)
+            return
         self.send_response(200)
         self.send_header('Content-Type',mimetypes.guess_type(name)[0] or 'application/octet-stream')
         self.send_header('Content-Length',str(path.stat().st_size))
