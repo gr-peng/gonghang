@@ -13,7 +13,7 @@
 - [演示脚本](DEMO.md)：8 分钟答辩与 4 分钟可选视频。
 - [部署与复现](DEPLOYMENT.md)：源码、基础功能、本地模型和测试。
 - [来源与许可](ATTRIBUTION.md)：原项目、安全包和模型的归属。
-- [提交核对](SUBMISSION.md)：三人队伍、提交入口和未代填的信息。
+- [提交核对](SUBMISSION.md)：两人队伍、提交入口和未代填的信息。
 
 答辩 [PPT](../../materials/FinPilot-presentation.pptx)、[PDF](../../materials/FinPilot-presentation.pdf) 和文档下载包集中在 [materials/](../../materials/README.md)，当前完整验证报告在 [VALIDATION.json](../../VALIDATION.json)。维护环境可用 `scripts/build_competition_materials.py` 根据本地验收证据生成；未通过发布门槛的模型不能写成上线成果。
 

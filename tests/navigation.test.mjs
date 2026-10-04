@@ -25,7 +25,9 @@ function setup(start) {
   return {win,nav,changes,left};
 }
 
-assert.equal(Object.keys(routes).length,19);
+assert.equal(Object.keys(routes).length,20);
+assert.equal(routes.wealth.tab,'investment');
+assert.equal(routes.wealth.parent,'investment');
 assert.equal(primaryTabs.length,5);
 assert.equal(parseRoute('#/unknown?code=123').href,'#/home');
 assert.equal(parseRoute('stock?code=600036&name=%E6%8B%9B%E5%95%86').query,'code=600036&name=%E6%8B%9B%E5%95%86');
@@ -35,7 +37,7 @@ for(const [route,info] of Object.entries(routes)) {
   if(route==='home')assert.equal(nav.backTarget,null);
   else {nav.back();assert.equal(win.location.hash,'#/'+info.parent,route);assert.notEqual(win.location.hash,'#external');}
 }
-console.log('PASS: all 19 routes have consistent owners and safe direct-link return paths.');
+console.log('PASS: all 20 routes have consistent owners and safe direct-link return paths.');
 
 {
   const {nav,win,changes}=setup();

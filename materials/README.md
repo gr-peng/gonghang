@@ -1,15 +1,15 @@
 # FinPilot · 财富管理服务参赛材料
 
-作品改名为 FinPilot，工行方向调整为财富管理服务；保留竖版 Liquid Glass 和已评估的 finance-v4。先阅读[方向对照与缺项](../docs/competition/ICBC-WEALTH.md)。
+作品改名为 FinPilot，工行方向调整为财富管理服务；保留竖版 Liquid Glass 和已评估的 finance-v4。本版补齐资产负债盘点、按需词条和情景试算，团队为两人。先阅读[方向对照与缺项](../docs/competition/ICBC-WEALTH.md)。
 
 | 材料 | 用途 |
 |---|---|
-| [FinPilot-presentation.pptx](FinPilot-presentation.pptx) | 可编辑的 13 页答辩 PPT |
+| [FinPilot-presentation.pptx](FinPilot-presentation.pptx) | 可编辑的 15 页答辩 PPT |
 | [FinPilot-presentation.pdf](FinPilot-presentation.pdf) | 同版 PDF，适合直接预览 |
 | [FinPilot-documents.zip](FinPilot-documents.zip) | 参赛文档与验证报告的下载包 |
 | [参赛文档入口](../docs/competition/README.md) | 技术说明、安全自评、服务方案、演示脚本、提交核对 |
 | [VALIDATION.json](../VALIDATION.json) | 2026-10-04 完整验收，以及有日期与边界说明的历史模型／安全内核结果 |
-| [PUBLISH-VALIDATION.json](PUBLISH-VALIDATION.json) | FinPilot 更名、独立目录回归、布局、材料与线上检查 |
+| [PUBLISH-VALIDATION.json](PUBLISH-VALIDATION.json) | 财富视图与理解支持、独立目录回归、布局、材料与线上检查 |
 | [SNAPSHOT.json](SNAPSHOT.json) | 版本、来源与发布范围 |
 | [SOURCE-MANIFEST.json](../SOURCE-MANIFEST.json) | 本仓库发布文件的 SHA-256 清单，不包含清单自身 |
 | [SOURCE-MANIFEST.original.json](SOURCE-MANIFEST.original.json) | 整理前便携源码包的文件清单，用于追溯 |
@@ -20,7 +20,7 @@ PPT/PDF 已按财富管理服务重写定位，保留原版页面风格。文档
 
 ```bash
 python -m pip install python-pptx
-python scripts/build_competition_materials.py --validation VALIDATION.json --screenshots materials/screenshots --presentation-only --output .runtime/presentation
+python scripts/build_competition_materials.py --validation VALIDATION.json --application-validation materials/PUBLISH-VALIDATION.json --screenshots materials/screenshots --presentation-only --output .runtime/presentation
 ```
 
 这条命令不重跑模型或测试；不能把历史验证报告冒充新运行的结果。

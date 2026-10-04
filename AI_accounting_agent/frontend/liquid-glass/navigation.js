@@ -8,6 +8,7 @@ export const routes = Object.freeze({
   entry:{title:'记一笔',tab:'ledger',parent:'ledger'},
   insights:{title:'财务分析',tab:'visualization',parent:'visualization'},
   import:{title:'导入流水',tab:'ledger',parent:'ledger'},
+  wealth:{title:'资产总览',tab:'investment',parent:'investment'},
   holdings:{title:'模拟持仓',tab:'investment',parent:'investment'},
   profile:{title:'我的计划',tab:'investment',parent:'investment'},
   compare:{title:'方案比较',tab:'investment',parent:'investment'},

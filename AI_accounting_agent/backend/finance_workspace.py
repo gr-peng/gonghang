@@ -33,6 +33,7 @@ from accounting_schema import EXPENSE_CATEGORIES, INCOME_CATEGORIES
 from bank_import import decimal_amount, parse_csv, statement_date
 from finance_schema import INTENT_PROMPT, PLAN_PROMPT, plan_facts, plan_target, validate_plan_selection, foreign_currency_pending
 from learning_loop import LearningLoop
+from wealth import WealthStore, CreateAccount, UpdateAccount, VersionInput, ConfirmInventory, Scenario, scenario as calculate_scenario
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'vendor/mosaic_guard/src'))
@@ -395,6 +396,7 @@ class FinanceWorkspace:
                 if name not in columns:
                     self.store._db.execute(f'ALTER TABLE app_goal_progress ADD COLUMN {name} {definition}')
         self.learning = LearningLoop(self.store, ROOT)
+        self.wealth = WealthStore(self.store)
         self.closed = False
 
     def close(self):
@@ -569,6 +571,22 @@ class FinanceWorkspace:
                 self.store._db.execute('INSERT OR REPLACE INTO app_profile VALUES (?,?)', (ACTOR, profile.model_dump_json()))
             return result
 
+    def wealth_overview(self, planning=None, profile=None) -> dict:
+        profile = profile or self.profile()
+        planning = planning or ledger_planning(profile, cashflow(self.read_bills()))
+        view = self.wealth.snapshot()
+        # Month flows are not balances. Only compare the owner's declared
+        # personal ledger with the manual inventory; never add simulated cash.
+        comparable = profile.ledger_scope == 'personal' and planning['ready']
+        target = planning['emergency']['target_minor'] if comparable else None
+        saved = view['breakdown']['emergency_minor'] if view['ready'] else None
+        view['planning'] = {'ledger_scope': profile.ledger_scope, 'comparable': comparable,
+                            'emergency_target_minor': target,
+                            'emergency_gap_minor': max(0, target-saved) if target is not None and saved is not None else None,
+                            'monthly_after_goal_minor': planning['after_goal_minor'] if profile.ledger_scope == 'personal' and planning['ready'] else None,
+                            'basis': planning['basis']}
+        return view
+
     def overview(self) -> dict:
         profile = self.profile()
         rows = self.read_bills()
@@ -624,7 +642,7 @@ class FinanceWorkspace:
             operations = self.store._db.execute('SELECT * FROM app_operations ORDER BY created DESC LIMIT 12').fetchall()
         return {'mode': 'simulated_bank', 'cash_minor': cash,
                 'assets_minor': cash + sum(p['holding_minor'] for p in products), 'profile': profile.model_dump(),
-                'cashflow': flow, 'planning': planning,
+                'cashflow': flow, 'planning': planning, 'wealth': self.wealth_overview(planning, profile),
                 'reserve_target_minor': reserve, 'reserve_available_minor': cash + reserve_holding,
                 'goal_buffer_minor': goal_buffer, 'goal_monthly_minor': planning['goal']['monthly_required_minor'],
                 'goal_feasible': planning['goal']['feasible'],
@@ -885,6 +903,20 @@ class FinanceWorkspace:
     def assistant(self, sid: str, data: FinanceConversation) -> dict:
         """LLM intent and grounded explanation; neither grants bank authority."""
         latest = next((m.content for m in reversed(data.messages) if m.role == 'user'), '')
+        if re.search(r'净资产|资产负债|可动用资金|我的资产', latest) and not re.search(r'转账|申购|赎回|转给|买入|购买|卖出', latest):
+            view = self.wealth_overview()
+            if view['net_minor'] is None:
+                reply = '还没有登记个人资产和负债。先在资产总览中补齐余额、待还款和预留资金，才能算出净资产与可动用资金。'
+            else:
+                reply = f"已登记资产 {view['assets_minor']/100:,.2f} 元，负债 {view['liabilities_minor']/100:,.2f} 元，净资产 {view['net_minor']/100:,.2f} 元。"
+                if view['ready']:
+                    reply += f"\n\n扣除应急、目标、其他预留和未来30天待还后，可动用资金为 {view['available_minor']/100:,.2f} 元。"
+                    if view['shortfall_minor']:
+                        reply += f"仍有 {view['shortfall_minor']/100:,.2f} 元的近期资金缺口。"
+                else:
+                    reply += '\n\n可动用资金待核对：请确认登记完整，补齐可用金额与近期还款，并更新超过30天的估值。'
+                reply += '\n\n以上按手动登记计算；账本月结余和模拟持仓不计入余额。'
+            return {'reply': reply, 'draft': None, 'plan_next': 'wealth', 'planner_status': 'verified_inventory'}
         scenario = re.search(r'(?:改(?:为|成)|缩短(?:为|到)?|延长(?:为|到)?|换成|按|那|期限(?:为|是)?|规划)\s*([0-9一二两三四五六七八九十]+)\s*个?月', latest)
         if scenario and not re.search(r'转账|申购|赎回|转给|买入', latest):
             value = scenario.group(1)
@@ -940,6 +972,8 @@ class FinanceWorkspace:
             goal = planning['goal']
             observed = planning['basis']['observed_months']
             money_text = lambda value: f'{Decimal(value) / 100:,.2f}'
+            wealth = overview['wealth']
+            reserve_known = wealth['ready'] and wealth['planning']['comparable']
             sentences = []
             if observed:
                 label = '默认账本' if overview['profile']['ledger_scope'] == 'demo' else '个人账本'
@@ -951,11 +985,14 @@ class FinanceWorkspace:
             if planning['ready']:
                 extra = planning['monthly']['commitment_extra_minor']
                 prefix = f"扣除每月额外固定预留 {money_text(extra)} 元后，" if extra else ''
-                sentences.append(f"{prefix}目标预留后月均结余为 {money_text(planning['after_goal_minor'])} 元，尚未扣减待核对的应急金缺口。")
+                suffix = '这是一段时间的流量，不能直接加到已有资产。' if reserve_known else '尚未扣减待核对的应急金缺口。'
+                sentences.append(f"{prefix}目标预留后月均结余为 {money_text(planning['after_goal_minor'])} 元，{suffix}")
             else:
                 sentences.append(planning['quality']['message'] + '，暂不据此判断可长期安排的月度金额。')
             emergency = planning['emergency']['target_minor']
-            if emergency:
+            if emergency and reserve_known:
+                sentences.append(f"应急金目标为 {money_text(emergency)} 元；资产总览中手动登记已预留 {money_text(wealth['breakdown']['emergency_minor'])} 元，尚差 {money_text(wealth['planning']['emergency_gap_minor'])} 元。")
+            elif emergency:
                 sentences.append(f"应急金目标为 {money_text(emergency)} 元，实际已预留金额尚未核对。")
             else:
                 sentences.append('应急金目标需补充开销后再估算，实际已预留金额尚未核对。')
@@ -1026,6 +1063,42 @@ class FinanceRouter:
             service.session(request)
             response.headers['Cache-Control'] = 'no-store'
             return service.overview()
+
+        @router.get('/wealth')
+        def wealth(request: Request, response: Response):
+            service = self.workspace()
+            service.session(request)
+            response.headers['Cache-Control'] = 'no-store'
+            return service.wealth_overview()
+
+        @router.post('/wealth/accounts')
+        def create_wealth_account(request: Request, data: CreateAccount):
+            service = self.workspace()
+            service.session(request)
+            return service.wealth.create(data)
+
+        @router.put('/wealth/accounts/{account_id}')
+        def update_wealth_account(request: Request, account_id: str, data: UpdateAccount):
+            service = self.workspace()
+            service.session(request)
+            return service.wealth.update(account_id, data)
+
+        @router.delete('/wealth/accounts/{account_id}')
+        def delete_wealth_account(request: Request, account_id: str, data: VersionInput):
+            service = self.workspace()
+            service.session(request)
+            return service.wealth.update(account_id, data, delete=True)
+
+        @router.post('/wealth/confirm')
+        def confirm_wealth(request: Request, data: ConfirmInventory):
+            service = self.workspace()
+            service.session(request)
+            return service.wealth.confirm(data)
+
+        @router.post('/wealth/scenario')
+        def wealth_scenario(request: Request, data: Scenario):
+            self.workspace().session(request)
+            return calculate_scenario(data)
 
         @router.post('/profile')
         def profile(request: Request, data: ProfileUpdate):

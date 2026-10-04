@@ -7,6 +7,8 @@ import {finance} from './finance-api.js';
 import {createStatements} from './statements.js';
 import {createGoals} from './goals.js';
 import {createImprovement} from './improvement.js';
+import {createWealth} from './wealth.js';
+import {createLearning} from './learning.js';
 import {storage, book, trader, baseURL, saveConnections, resetConnections, allBills} from './api.js';
 const $ = (s, root=document) => root.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -91,7 +93,7 @@ async function render(){
   if(['home','ledger','insights','visualization','investment','entry','assistant'].includes(route))await ensureLedgerContext();
   if(token!==state.epoch)return;
   document.querySelector('.topbar').outerHTML=header(title);
-  await ({home:homePage,ledger:ledgerPage,entry:entryPage,assistant:assistantPage,stock:stockPage,settings:settingsPage,...features.pages,...journey.pages,...investment.pages,...research.pages,...statements.pages,...improvement.pages}[route])(paint);
+  await ({home:homePage,ledger:ledgerPage,entry:entryPage,assistant:assistantPage,stock:stockPage,settings:settingsPage,...features.pages,...journey.pages,...investment.pages,...research.pages,...statements.pages,...improvement.pages,...wealth.pages}[route])(paint);
  }catch(error){paint(errorHTML(error));}
  finally{if(token===state.epoch)requestAnimationFrame(()=>{if(token===state.epoch){window.scrollTo(0,scrollY);navigation.restored();}});}
 }
@@ -148,6 +150,8 @@ const investment=createInvestment(featureContext);
 const research=createResearch(featureContext);
 const statements=createStatements(featureContext);
 const improvement=createImprovement(featureContext);
+const wealth=createWealth(featureContext);
+const learning=createLearning(featureContext);
 const actions={
  'home':()=>go('home'),'ledger':()=>go('ledger'),'entry':()=>go('entry'),'insights':()=>go('insights'),'settings':()=>go('settings'),
  'back':()=>navigation.back(),'refresh':()=>render(),'close-sheet':closeSheet,
@@ -199,7 +203,7 @@ const actions={
  'reset-connections':()=>{resetConnections();ledgerContextPromise=null;state.monthInitialized=false;state.reports={};render();toast('服务地址已恢复默认');},
  'refresh-data':()=>{state.reports={};state.quotes={};state.watchlist=[];ledgerContextPromise=null;toast('缓存已清除，页面将重新读取数据');},
 };
-Object.assign(actions,features.actions,journey.actions,investment.actions,research.actions,statements.actions,goals.actions,improvement.actions);
+Object.assign(actions,features.actions,journey.actions,investment.actions,research.actions,statements.actions,goals.actions,improvement.actions,wealth.actions,learning.actions);
 const legacyChatAdd=actions['chat-add'];
 actions['chat-add']=b=>state.mode==='finance'?journey.showQuickInputs():legacyChatAdd(b);
 document.addEventListener('input',features.onInput);
@@ -210,6 +214,10 @@ document.addEventListener('submit',statements.onSubmit);
 document.addEventListener('input',statements.onInput);
 document.addEventListener('change',statements.onChange);
 document.addEventListener('submit',goals.onSubmit);
+document.addEventListener('submit',wealth.onSubmit);
+document.addEventListener('change',wealth.onChange);
+document.addEventListener('submit',learning.onSubmit);
+document.addEventListener('input',learning.onInput);
 document.addEventListener('click',event=>{const tab=event.target.closest('[data-nav-tab]');if(tab&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey&&event.button===0){event.preventDefault();go(tab.dataset.navTab,{root:true});return;}const button=event.target.closest('[data-action]');if(!button)return;const action=button.dataset.action;if(action!=='send')event.preventDefault();if(['entry','ledger','insights','settings'].includes(action)&&$('#sheet').open)closeSheet();const handler=actions[action];if(handler)Promise.resolve(handler(button)).catch(e=>toast(e.message));});
 document.addEventListener('keydown',event=>{const point=event.target.closest('.chart-point');if(point&&['Enter',' '].includes(event.key)){event.preventDefault();actions[point.dataset.action]?.(point);}if(event.target.id==='chat-input'&&event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();sendChat();}});
 document.addEventListener('input',event=>{if(event.target.closest(retainedForms))retainPageDraft();if(event.target.closest('#entry-form')){if(draft.pending){draft.client_request_id=uid();draft.pending=false;}syncDraft();}if(event.target.id==='bill-search'){state.filter.q=event.target.value;renderBillList();}if(event.target.id==='chat-input')state.chatDraft=event.target.value;});

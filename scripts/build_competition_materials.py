@@ -160,7 +160,7 @@ def presentation(report):
     s=page(pres,'FinPilot',1);slides.append(s)
     text(s,.88,1.88,7.3,1.55,'让资金安排\n和风险依据看得懂',38,True)
     text(s,.9,3.85,7.4,1.25,'可解释财富管理智能体\n工行杯 · 财富管理服务',24,False,MUTED)
-    shape(s,.9,5.65,6.6,.6,INK);text(s,1.13,5.76,6.15,.4,'3 人团队  ｜  8 分钟演示  ｜  比赛原型',19,True,'FFFFFF')
+    shape(s,.9,5.65,6.6,.6,INK);text(s,1.13,5.76,6.15,.4,'2 人团队  ｜  8 分钟演示  ｜  比赛原型',19,True,'FFFFFF')
     phone(s,'home.png')
     s=page(pres,'个人财富管理，先看清用途与风险',2);slides.append(s)
     bullets(s,.85,1.72,7.7,[('哪些钱可以安排','先核对收入、开销、还款与数据完整性'),('什么时候需要用','近期目标与应急需求先于长期安排'),('方案有什么不同','风险、期限、流动性与费用逐项对照'),('使用 AI 如何放心','数字有依据，每笔资金动作由用户确认')])
@@ -177,13 +177,19 @@ def presentation(report):
     s=page(pres,'资金规划先明确约束，再讨论方案',5);slides.append(s)
     bullets(s,.85,1.72,7.55,[('计划由用户填写','用款目标、期限、生活开销和还款可核对'),('先核对收入、开销与还款','仅三笔工资不代表流水完整，可安排额待核对'),('资金与风险都有约束','完整性未确认或结余不足，长期资格保持关闭'),('目标换了，进度不串用','确认保留或归零；逐笔进度可撤销、期限可测算')])
     phone(s,'investment.png')
+    s=page(pres,'拥有多少，和现在能用多少分开看',6);slides.append(s)
+    bullets(s,.85,1.72,7.55,[('资产与负债一起盘点','8 类资产、3 类负债，净资产允许为负'),('可用现金不等于总资产','扣除应急、目标、其他预留与近期还款'),('缺项先核对','空值保持未知，过期估值和修改后重新确认'),('与个人账本联动','应急目标对照已留金额；月结余不重复累计')])
+    phone(s,'wealth.png')
     s=page(pres,'模型理解与解释，服务器核对事实',6);slides.append(s)
-    for x,heading,body in [(1.0,'Qwen3 + LoRA','意图提取\n已知原因排序\n研究事实选择'),(5.05,'可信服务器','整数分与现金流\n风险与资金上限\n完整参数与控制证明'),(9.1,'用户','改正草稿\n核对参数\n动态验证')]:
+    for x,heading,body in [(1.0,'Qwen3 + LoRA','意图提取\n已知原因排序\n研究事实选择'),(5.05,'可信服务器','整数分与现金流\n风险与资金上限\n参数核对与授权'),(9.1,'用户','改正草稿\n核对参数\n动态验证')]:
         shape(s,x,1.88,3.2,3.5);text(s,x+.28,2.15,2.65,.5,heading,25,True,BLUE);text(s,x+.28,2.95,2.65,2.1,body,23)
     text(s,1.05,5.83,11.1,.8,'新增金额或授权字段不被接纳；银行结果只来自回执或核账。',24,True)
     s=page(pres,'比较方案之前，先明确资金用途',7);slides.append(s)
     bullets(s,.85,1.72,7.55,[('风险与期限','并列两种原型方案，不替代正式适当性评估'),('流动性与费用','展示模拟规则，不冒充真实金融产品条款'),('先说明不适合的原因','开销未核对、近期要用或目标压力过大时受限'),('用户自己确认','草稿、参数核对和执行分别发生，结果可追溯')])
     phone(s,'compare.png')
+    s=page(pres,'点开解释，再用数字试一次',8);slides.append(s)
+    bullets(s,.85,1.72,7.55,[('12 个按需词条','白话解释、具体例子、官方资料入口'),('把成本和涨跌算清楚','1 万元，假设 −10% 涨跌、一次性费用 0.5%'),('结果可以核对','费用 50 元，期末 8,955 元，变化 −1,045 元'),('体验通过不等于效果证明','算术情景不是预测；真实用户理解效果待验证')])
+    phone(s,'scenario.png')
     s=page(pres,'投研先核对数据，再组织报告',8);slides.append(s)
     bullets(s,.85,1.72,7.55,[('异常行情先隔离','校验 OHLC 基本关系，保留原文件以便追溯'),('不臆造成交额','成交量单位缺失时，不换算资金或推断流向'),('只引用核对后的事实','日期、价格、标题来自目录，模型只选择已有条目'),('明确历史边界','可用图表继续保留，异常个股显示待核对')])
     phone(s,'research-quality.png')
@@ -199,17 +205,17 @@ def presentation(report):
         shape(s,4.0,y+.05,6.7,.21,'DFE6F1');shape(s,4.0,y+.05,6.7*metric['accuracy'],.21,BLUE)
         text(s,11.0,y-.01,1.65,.4,f"{metric['correct']}/{metric['count']}",23,True,BLUE)
     y=1.62+len(tasks)*.82+.15
-    text(s,.88,y,11.8,.8,f"已记录应用回归 {report['checks']['application']['passed']} 项；历史评审复测 {len(report['checks']['judge_browser']['checks'])} 组。\n19 页 × 3 种宽度；历史银行流程 {len(report['checks']['bank_browser']['checks'])} 组经双代理与实际模型验收。",18,False,MUTED)
+    text(s,.88,y,11.8,.8,f"当前应用回归 {report.get('wealth_validation',{}).get('application_passed',report['checks']['application']['passed'])} 项；财富流程 {report.get('wealth_validation',{}).get('browser_checks','待验证')} 组。\n20 页 × 3 种宽度；历史银行流程 {len(report['checks']['bank_browser']['checks'])} 组使用实际模型验收。",18,False,MUTED)
     text(s,.88,6.77,11.2,.25,'上图是原 finance-v4 合成开发留出，本轮未重训；回归通过不代表真实收益或银行认证。',13,False,MUTED)
     s=page(pres,'架构可复现，能力与权限分开',11);slides.append(s)
-    items=[('网页 + 同源代理','19 页 · 430px 竖版 · 透明玻璃'),('记账 / 投研 / BFF','保留原两个服务'),('本地共享模型','不直接持有操作权限'),('MOSAIC + 银行模拟','独立密钥 · 持久结果')]
+    items=[('网页 + 同源代理','20 页 · 430px 竖版 · 透明玻璃'),('记账 / 投研 / BFF','保留原两个服务'),('本地共享模型','不直接持有操作权限'),('MOSAIC + 银行模拟','独立密钥 · 持久结果')]
     for i,(heading,body) in enumerate(items):
         x=.86+(i%2)*6.28;y=1.7+(i//2)*2.07;shape(s,x,y,5.9,1.72);text(s,x+.28,y+.32,5.25,.48,heading,26,True,BLUE);text(s,x+.28,y+.98,5.25,.42,body,22)
     text(s,.96,6.25,11.7,.6,'安全内核 MIT；Qwen 基座 Apache；保留来源归属，新增集成单列。',20,False,MUTED)
     s=page(pres,'赛道匹配，补强项与现有能力分开',12);slides.append(s)
-    bullets(s,.85,1.72,11.6,[('已实现个人资金管理主线','账单核对、目标预留、风险约束、方案比较与模拟操作'),('优先补强：让用户看懂','按需术语解释、风险与费用情景、用户理解测试'),('后续扩展：完整资产视图','存量资产负债、已有应急金、多资产方案和偏离提醒'),('当前能力边界','单用户模拟原型；没有真实银行接入、正式适当性或收益承诺')])
+    bullets(s,.85,1.72,11.6,[('已补齐：个人财富视图','资产、负债、净资产与可用现金，连接个人账本规划'),('已补齐：让用户看懂','12 个按需词条与费用试算；解释不占满主界面'),('两人协作，下一步验证','产品交互与模型后端协同；开展自愿用户理解测试'),('当前能力边界','手动登记、单用户、模拟银行；无自动资产聚合和收益承诺')])
     for index,s in enumerate(slides):
-        s.notes_slide.notes_text_frame.text=f'第 {index+1} 页。按 docs/competition/DEMO.md 的 8 分钟节奏讲述。数字以 VALIDATION.json 为准；不要把合成演示或模拟资金描述成真实用户成果。'
+        s.notes_slide.notes_text_frame.text=f'第 {index+1} 页。按 docs/competition/DEMO.md 的 8 分钟节奏讲述。本版应用数字以 materials/PUBLISH-VALIDATION.json 为准，历史模型数字见 VALIDATION.json；不要把合成演示或模拟资金描述成真实用户成果。'
     pres.save(OUT/'FinPilot-presentation.pptx')
 
 
@@ -230,7 +236,7 @@ def source_bundle(report):
     add(ROOT/'run.py');add(ROOT/'.env.example');add(ROOT/'tests/requirements.txt')
     add(ROOT/'docs/UI-NAVIGATION.md')
     add(ROOT/'docs/INVESTMENT-REFACTOR.md')
-    allowed={'app.py','investment_app.py','data.py','prompts.py','llm_runtime.py','accounting_schema.py','finance_schema.py','finance_workspace.py','bank_import.py','learning_loop.py','research_quality.py'}
+    allowed={'app.py','investment_app.py','data.py','prompts.py','llm_runtime.py','accounting_schema.py','finance_schema.py','finance_workspace.py','wealth.py','bank_import.py','learning_loop.py','research_quality.py'}
     for p in (ROOT/'AI_accounting_agent/backend').iterdir():
         if p.name in allowed or p.name.startswith('requirements') and p.suffix=='.txt':add(p)
     for prefix in ('AI_accounting_agent/frontend/liquid-glass','vendor/mosaic_guard','docs/competition'):
@@ -288,6 +294,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',type=Path)
     parser.add_argument('--validation',type=Path,help='Use an existing dated validation report; does not rerun tests')
+    parser.add_argument('--application-validation',type=Path,help='Current application checks, separate from historical model evidence')
     parser.add_argument('--screenshots',type=Path,help='Directory of reviewed application screenshots')
     parser.add_argument('--presentation-only',action='store_true',help='Render PPT without private runtime or source bundling')
     args=parser.parse_args()
@@ -295,10 +302,16 @@ def main():
     if args.screenshots:FIXES=args.screenshots
     OUT.mkdir(parents=True,exist_ok=True)
     report=json.loads(args.validation.read_text()) if args.validation else validation()
+    if args.application_validation:
+        current=json.loads(args.application_validation.read_text())
+        if not current['startup_and_browser']['passed'] or current['application_regression']['failed']:
+            raise ValueError('Application validation must pass before rendering')
+        report['wealth_validation']={'application_passed':current['application_regression']['passed'],
+                                    'browser_checks':len(current['startup_and_browser']['checks'])}
     dump(OUT/'VALIDATION.json',report)
     presentation(report)
     if not args.presentation_only:source_bundle(report)
-    print(json.dumps({'output':str(OUT),'slides':13,'model':report['model']['version'],
+    print(json.dumps({'output':str(OUT),'slides':len(Presentation(OUT/'FinPilot-presentation.pptx').slides),'model':report['model']['version'],
                       'used_saved_validation':bool(args.validation),'source_built':not args.presentation_only},ensure_ascii=False))
 
 

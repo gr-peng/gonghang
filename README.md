@@ -2,7 +2,7 @@
 
 面向工行杯「财富管理服务」方向，将账单核对、现金流、目标预留、风险约束、方案比较和模拟操作连接起来。详见[赛道适配评估与待补强项](docs/competition/ICBC-WEALTH.md)。
 
-本仓库收录 **2026-10-04 FinPilot 财富管理版**：19 个页面，所有屏幕保持最大 430px 的竖版布局，统一透明 Liquid Glass；包含评委体验修复、已微调的 finance-v4 LoRA 适配器，以及同版本答辩材料。当前是现金流驱动的个人资金管理原型；完整资产负债、按需术语解释和真实用户理解验证列为待补强项。
+本仓库收录 **2026-10-04 FinPilot 财富管理版**：20 个页面，所有屏幕保持最大 430px 的竖版布局，统一透明 Liquid Glass；包含评委体验修复、已微调的 finance-v4 LoRA 适配器，以及同版本答辩材料。本版补齐个人资产负债登记、净资产与可动用资金、12 个按需解释词条和涨跌费用试算。两人组队；真实用户理解效果仍待验证。
 
 [答辩 PPT](materials/FinPilot-presentation.pptx) · [PDF 预览](materials/FinPilot-presentation.pdf) · [参赛文档](docs/competition/README.md) · [部署说明](docs/competition/DEPLOYMENT.md) · [版本与验证](materials/README.md)
 
@@ -11,6 +11,8 @@
 - **记账与纠错**：文字提取、手动录入、CSV 预览校正、重复识别、原 ID 编辑与并发保护。
 - **收支分析**：月／年／自定义区间、趋势、分类、同期对比、筛选小计，选定区间可以带入助手。
 - **资金规划**：从账本现金流核对生活开销、还款、应急金和目标预留；目标独立记录，进度可撤销，期限追问只读测算。
+- **财富总览**：8 类资产、3 类负债，记录估值日期与即时可用金额；扣除预留和近期还款，缺项保持待核对；与个人账本应急目标对照。
+- **看懂方案**：点击解释风险、流动性、净值、回撤和费用；假设涨跌与费用用整数分确定性计算，不触发投资。
 - **投资研究**：历史自选、行情、组合与报告；异常 OHLC 数据隔离，报告使用可归因事实。
 - **模拟银行**：转账、申购、赎回，经参数确认、TOTP、去重和回执核对后执行。
 - **模型与反馈**：Qwen3-4B + LoRA；用户同意、结构化修正、人工审核、离线评估、发布与回滚。
@@ -50,11 +52,11 @@ python run.py --demo
 
 ## 验证
 
-整理发布前，在本仓库目录再次运行后端回归、前端检查与隔离启动检查；结果见 [materials/PUBLISH-VALIDATION.json](materials/PUBLISH-VALIDATION.json)。此前线上对应版本的完整验收记录见 [VALIDATION.json](VALIDATION.json)：104 项应用回归、11 组评审浏览器流程、11 组银行浏览器流程，以及 19 页 × 3 种宽度布局检查。
+整理发布前，在本仓库目录再次运行后端回归、前端检查与隔离启动检查；本版 129 项后端回归与 3 套前端检查通过；新增浏览器流程与 20 页 × 3 种宽度检查见 [materials/PUBLISH-VALIDATION.json](materials/PUBLISH-VALIDATION.json)。此前线上对应版本的完整验收记录见 [VALIDATION.json](VALIDATION.json)：104 项应用回归、11 组评审浏览器流程、11 组银行浏览器流程，以及 19 页 × 3 种宽度布局检查。
 
 ```bash
 python -m pip install -r AI_accounting_agent/backend/requirements-core.txt -r tests/requirements.txt
-python -m pytest -q tests/test_backend.py tests/test_accounting_v2.py tests/test_upstream_data.py tests/test_remote_access.py tests/test_finance_workspace.py tests/test_bank_import.py tests/test_learning_loop.py tests/test_model_release.py tests/test_finance_planning.py tests/test_judge_fixes.py
+python -m pytest -q tests/test_backend.py tests/test_accounting_v2.py tests/test_upstream_data.py tests/test_remote_access.py tests/test_finance_workspace.py tests/test_bank_import.py tests/test_learning_loop.py tests/test_model_release.py tests/test_finance_planning.py tests/test_judge_fixes.py tests/test_wealth.py
 node tests/navigation.test.mjs
 node tests/chart_geometry.test.mjs
 node tests/visuals.test.mjs
@@ -64,6 +66,6 @@ node tests/visuals.test.mjs
 
 ## 材料与来源
 
-答辩材料共 13 页，配套 8 分钟演示脚本。可直接下载 PPT 修改、在 GitHub 预览 PDF，或阅读[材料总览](materials/README.md)。发布源码和材料不等于提交比赛；成员、学校与正式模板由参赛团队核对。
+答辩材料共 15 页，配套 8 分钟演示脚本。可直接下载 PPT 修改、在 GitHub 预览 PDF，或阅读[材料总览](materials/README.md)。发布源码和材料不等于提交比赛；成员、学校与正式模板由参赛团队核对。
 
 源自 [FinTechathon](https://github.com/gr-peng/FinTechathon)。原项目、MOSAIC Guard 和 Qwen 的归属分别保留，详见[来源与许可](docs/competition/ATTRIBUTION.md)。运行时账本、环境密钥、访问凭据、会话和基座权重不进入本仓库。

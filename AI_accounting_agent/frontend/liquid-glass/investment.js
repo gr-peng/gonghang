@@ -1,3 +1,4 @@
+import {helpButton} from './learning.js';
 import {finance} from './finance-api.js';
 import {investmentNavigation} from './investment-shell.js';
 
@@ -13,7 +14,7 @@ export function createInvestment(ctx) {
   }
 
   function ledgerCard(report) {
-    return card(`<div class="row between"><h2>账本结余</h2><span class="period-stamp">${esc(state.month)}</span></div><div class="hero-amount" data-plan-metric="month-net">${money(report.net.current)}</div><div class="finance-metrics"><div><span>收入</span><strong data-plan-metric="month-income">${money(report.summary.income_total)}</strong></div><div><span>支出</span><strong data-plan-metric="month-expense">${money(report.summary.expense_total)}</strong></div></div><div class="actions mt">${btn('查看账单','investment-ledger','small glass')}${btn('收支图表','investment-chart','small glass')}</div>`,'planning-summary');
+    return card(`<div class="row between"><h2>账本结余 ${helpButton('cashflow')}</h2><span class="period-stamp">${esc(state.month)}</span></div><div class="hero-amount" data-plan-metric="month-net">${money(report.net.current)}</div><div class="finance-metrics"><div><span>收入</span><strong data-plan-metric="month-income">${money(report.summary.income_total)}</strong></div><div><span>支出</span><strong data-plan-metric="month-expense">${money(report.summary.expense_total)}</strong></div></div><div class="actions mt">${btn('查看账单','investment-ledger','small glass')}${btn('收支图表','investment-chart','small glass')}</div>`,'planning-summary');
   }
 
   function fundingCard(s) {
@@ -29,7 +30,7 @@ export function createInvestment(ctx) {
     const p=s.planning;
     if(!p)return '';
     const g=p.goal, percent=g.target_minor?Math.min(100,g.recorded_minor/g.target_minor*100):0;
-    return card(`<div class="row between"><h2>目标与预留</h2>${btn('设置','journey-profile','small')}</div>${g.target_minor?`<h3 class="mt">${esc(s.profile.goal_name)}</h3><div class="goal-progress-line"><span>已记录</span><strong>${cash(g.recorded_minor)} / ${cash(g.target_minor)}</strong></div><div class="progress-bar"><span style="width:${prefs.mask?0:percent}%"></span></div><dl class="funding-breakdown">${detail('目标剩余',g.remaining_minor)}${detail('每月计划',g.monthly_required_minor)}</dl><div class="actions">${btn('记录目标进度','goal-deposit','small glass')}${btn('进度记录','goal-history','small glass')}</div>`:`<div class="goal-empty-action">${btn('设置储蓄目标','journey-profile','small glass')}</div>`}<div class="reserve-target"><div><strong>应急金目标</strong><span>${s.profile.reserve_months} 个月生活开销</span></div><strong class="money">${p.quality?.has_expenses?cash(p.emergency.target_minor):'待补充开销'}</strong></div><div class="row between planning-preference"><span>风险偏好</span>${btn(s.risk_completed?'查看偏好':'待完善','journey-profile','small')}</div>`,'investment-goal');
+    return card(`<div class="row between"><h2>目标与预留</h2>${btn('设置','journey-profile','small')}</div>${g.target_minor?`<h3 class="mt">${esc(s.profile.goal_name)}</h3><div class="goal-progress-line"><span>已记录</span><strong>${cash(g.recorded_minor)} / ${cash(g.target_minor)}</strong></div><div class="progress-bar"><span style="width:${prefs.mask?0:percent}%"></span></div><dl class="funding-breakdown">${detail('目标剩余',g.remaining_minor)}${detail('每月计划',g.monthly_required_minor)}</dl><div class="actions">${btn('记录目标进度','goal-deposit','small glass')}${btn('进度记录','goal-history','small glass')}</div>`:`<div class="goal-empty-action">${btn('设置储蓄目标','journey-profile','small glass')}</div>`}<div class="reserve-target"><div><strong>应急金目标 ${helpButton('emergency')}</strong><span>${s.profile.reserve_months} 个月生活开销</span></div><strong class="money">${p.quality?.has_expenses?cash(p.emergency.target_minor):'待补充开销'}</strong></div>${s.wealth?.planning?.comparable?`<dl class="funding-breakdown">${detail('已登记应急预留',s.wealth.ready?s.wealth.breakdown.emergency_minor:NaN)}${detail('应急金缺口',s.wealth.planning.emergency_gap_minor??NaN)}</dl>`:''}<div class="actions mt">${btn('核对应急预留','wealth-open','small glass')}</div><div class="row between planning-preference"><span>风险偏好</span>${btn(s.risk_completed?'查看偏好':'待完善','journey-profile','small')}</div>`,'investment-goal');
   }
 
   async function investmentPage(paint) {
@@ -46,7 +47,7 @@ export function createInvestment(ctx) {
     const s=await finance('/overview'), p=s.planning;
     if(!p)return '';
     const observed=p.ready===true;
-    return card(`<div class="row between"><h2>结余规划</h2>${btn('投资 '+icon('next'),'investment','small')}</div><div class="plan-preview"><span>目标预留后月均结余</span><strong>${observed?cash(p.after_goal_minor):'待核对收支'}</strong></div><div class="feature-links"><button data-action="journey-profile">${icon('calendar')}目标与偏好</button><button data-action="investment">${icon('investment')}查看资金安排</button></div>`,'plan-card');
+    return card(`<div class="row between"><h2>结余规划</h2>${btn('投资 '+icon('next'),'investment','small')}</div><div class="plan-preview"><span>目标预留后月均结余</span><strong>${observed?cash(p.after_goal_minor):'待核对收支'}</strong></div><div class="feature-links"><button data-action="journey-profile">${icon('calendar')}目标与偏好</button><button data-action="wealth-open">${icon('investment')}资产总览</button></div>`,'plan-card');
   }
 
   function openLedger(dates) {
@@ -56,7 +57,7 @@ export function createInvestment(ctx) {
     state.filter={category:'',type:'',q:''};go('ledger');
   }
   return {pages:{investment:investmentPage},homeBlock,actions:{
-    'investment-section':button=>{const target=button.dataset.value;if(!['investment','research','holdings'].includes(target))return;closeSheet();go(target);},
+    'investment-section':button=>{const target=button.dataset.value;if(!['wealth','investment','research','holdings'].includes(target))return;closeSheet();go(target);},
     'investment-ledger':()=>openLedger(state.investmentMonthRange),
     'investment-basis-ledger':()=>openLedger(state.investmentBasis),
     'investment-chart':()=>{state.visualPeriod='month';state.visualRange=null;go('visualization');},

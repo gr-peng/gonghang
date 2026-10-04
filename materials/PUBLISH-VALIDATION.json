@@ -1,13 +1,14 @@
 {
-  "as_of_utc": "2026-10-04T14:46:04.698240+00:00",
+  "as_of": "2026-10-04 Asia/Shanghai",
   "brand": "FinPilot",
   "icbc_track": "财富管理服务",
-  "track_review": "docs/competition/ICBC-WEALTH.md",
+  "team_members": 2,
   "application_regression": {
-    "passed": 104,
+    "passed": 129,
     "failed": 0,
-    "warnings": 148,
-    "duration_seconds": 15.51
+    "warnings": 198,
+    "duration_seconds": 20.79,
+    "source": "tests/test_wealth.py and ten existing application suites"
   },
   "frontend_checks": [
     {
@@ -24,9 +25,20 @@
     }
   ],
   "startup_and_browser": {
-    "mode": "isolated_public_checkout_demo",
     "real_model_used": false,
-    "javascript_errors": [],
+    "production_writes": 0,
+    "checks": [
+      "empty inventory remains unknown",
+      "context help preserves unsaved form through Escape",
+      "assets, liabilities, reservations and 30-day dues yield correct totals",
+      "privacy masks totals and allocation bars",
+      "editing invalidates completeness and filters remain usable",
+      "assistant uses inventory facts and returns to wealth",
+      "risk explanation and fee scenario work; changes clear stale result",
+      "glossary search and keyboard navigation",
+      "delete requires explicit confirmation and recalculates",
+      "simulated balances, operations and ledger unchanged"
+    ],
     "layouts": [
       {
         "route": "home",
@@ -59,6 +71,12 @@
         "app": 360
       },
       {
+        "route": "wealth",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
         "route": "entry",
         "viewport": 360,
         "page": 360,
@@ -173,6 +191,12 @@
         "app": 393
       },
       {
+        "route": "wealth",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
         "route": "entry",
         "viewport": 393,
         "page": 393,
@@ -282,6 +306,12 @@
       },
       {
         "route": "investment",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "wealth",
         "viewport": 1280,
         "page": 1280,
         "app": 430
@@ -371,32 +401,21 @@
         "app": 430
       }
     ],
-    "services": {
-      "bookkeeper": {
-        "status": "ok",
-        "model_provider": "disabled"
-      },
-      "trader": {
-        "status": "ok",
-        "model_provider": "disabled"
-      }
-    },
-    "production_writes": 0,
-    "demo_bills": 6,
-    "brand_checked": "FinPilot",
-    "isolated_confirmation_canceled": true,
+    "javascript_errors": [],
     "passed": true,
     "isolated_launcher_stopped": true
   },
   "deployment": {
     "brand": "FinPilot",
     "checks": [
-      "home: new brand and portrait layout",
-      "investment: new brand and portrait layout",
-      "compare: new brand and portrait layout",
-      "bank: new brand and portrait layout",
-      "security: new brand and portrait layout",
-      "settings: new brand and portrait layout"
+      "home: wealth release and portrait layout",
+      "wealth: wealth release and portrait layout",
+      "investment: wealth release and portrait layout",
+      "compare: wealth release and portrait layout",
+      "bank: wealth release and portrait layout",
+      "security: wealth release and portrait layout",
+      "settings: wealth release and portrait layout",
+      "new personal inventory remains empty; explanation works"
     ],
     "javascript_errors": [],
     "production_api_writes": [],
@@ -437,20 +456,28 @@
     "passed": true
   },
   "production_financial_state_unchanged": true,
-  "runtime_source_files_equal_to_deployed_checkout": 379,
+  "wealth_features": {
+    "asset_categories": 8,
+    "liability_categories": 3,
+    "glossary_entries": 12,
+    "source": "manual owner-entered CNY inventory",
+    "bank_mutations": false,
+    "revalidation_days": 30,
+    "notes": "Source/date and completeness are user declarations, not bank verification."
+  },
   "presentation": {
-    "slides": 13,
-    "pdf_pages": 13,
-    "visual_review": "13-slide contact sheet reviewed",
-    "current_positioning": "wealth management service",
-    "existing_model_results_source": "../VALIDATION.json"
+    "slides": 15,
+    "pdf_pages": 15,
+    "team_members": 2,
+    "visual_review": "15-slide contact sheet reviewed; current application screenshots"
   },
   "model": {
     "version": "qingcai-qwen3-4b-finance-v4",
     "retrained": false,
     "historical_real_model_verification": "../VALIDATION.json"
   },
-  "materials_note": "Name and track positioning updated. Missing features in the assessment remain roadmap items; no change to financial logic or existing data.",
+  "materials_note": "Personal wealth overview and contextual education implemented; no real user effectiveness study, automatic bank aggregation, or new model training.",
+  "runtime_source_files_deployed": 12,
   "publication_scan": {
     "passed": true,
     "private_runtime_values_absent": true,
