@@ -1,0 +1,31 @@
+{
+  "base_url": "http://127.0.0.1:33000/v1",
+  "model": "Qwen3.8-27B",
+  "model_revision": "local:/data/LLMzoo/Qwen3.8-27B;config_sha256=191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab;index_sha256=77042094076611b69791a610065f28b7013b8c621795fa86ddccc8bac7d1b9df",
+  "tokenizer_revision": "tokenizer_sha256=0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3;template_sha256=c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+  "inference_engine": "sglang",
+  "engine_revision": "0.5.13.post1",
+  "precision": "bfloat16",
+  "prompt_template_id": "mosaic-action-json-v1-opaque-source-metadata",
+  "source_metadata_mode": "opaque",
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "max_tokens": 256,
+  "timeout_seconds": 120.0,
+  "response_format_json": true,
+  "capture_token_spans": true,
+  "extra_body": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "runtime_metadata": {
+    "server_host": "school",
+    "remote_endpoint": "http://127.0.0.1:30000/v1",
+    "tensor_parallel_size": 4,
+    "context_length": 32768,
+    "torch": "2.11.0+cu130",
+    "transformers": "5.8.1",
+    "cuda": "13.0"
+  }
+}

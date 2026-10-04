@@ -1,0 +1,414 @@
+{
+  "as_of_utc": "2026-10-04T14:23:40.651136+00:00",
+  "scope": "Independent publication checkout; existing production processes were not restarted.",
+  "application_regression": {
+    "passed": 104,
+    "failed": 0,
+    "duration_seconds": 15.74,
+    "warnings": 148,
+    "warning_scope": "dependency deprecations",
+    "files": [
+      "test_backend.py",
+      "test_accounting_v2.py",
+      "test_upstream_data.py",
+      "test_remote_access.py",
+      "test_finance_workspace.py",
+      "test_bank_import.py",
+      "test_learning_loop.py",
+      "test_model_release.py",
+      "test_finance_planning.py",
+      "test_judge_fixes.py"
+    ]
+  },
+  "frontend_checks": [
+    {
+      "file": "tests/navigation.test.mjs",
+      "passed": true
+    },
+    {
+      "file": "tests/chart_geometry.test.mjs",
+      "passed": true
+    },
+    {
+      "file": "tests/visuals.test.mjs",
+      "passed": true
+    }
+  ],
+  "startup_and_browser": {
+    "mode": "isolated_public_checkout_demo",
+    "real_model_used": false,
+    "javascript_errors": [],
+    "layouts": [
+      {
+        "route": "home",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "ledger",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "visualization",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "assistant",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "investment",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "entry",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "insights",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "import",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "holdings",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "profile",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "compare",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "research",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "dashboard",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "risk",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "stock",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "bank",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "security",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "settings",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "improvement",
+        "viewport": 360,
+        "page": 360,
+        "app": 360
+      },
+      {
+        "route": "home",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "ledger",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "visualization",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "assistant",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "investment",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "entry",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "insights",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "import",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "holdings",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "profile",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "compare",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "research",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "dashboard",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "risk",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "stock",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "bank",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "security",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "settings",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "improvement",
+        "viewport": 393,
+        "page": 393,
+        "app": 393
+      },
+      {
+        "route": "home",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "ledger",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "visualization",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "assistant",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "investment",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "entry",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "insights",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "import",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "holdings",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "profile",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "compare",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "research",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "dashboard",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "risk",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "stock",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "bank",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "security",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "settings",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      },
+      {
+        "route": "improvement",
+        "viewport": 1280,
+        "page": 1280,
+        "app": 430
+      }
+    ],
+    "services": {
+      "bookkeeper": {
+        "status": "ok",
+        "model_provider": "disabled"
+      },
+      "trader": {
+        "status": "ok",
+        "model_provider": "disabled"
+      }
+    },
+    "production_writes": 0,
+    "demo_bills": 6,
+    "passed": true,
+    "isolated_launcher_stopped": true
+  },
+  "model": {
+    "weights_equal_to_deployed_adapter": true,
+    "new_inference_or_training": false,
+    "historical_real_model_verification": "../VALIDATION.json"
+  },
+  "runtime_source_files_equal_to_deployed_checkout": 379,
+  "presentation_files_equal_to_reviewed_delivery": true,
+  "production_writes": 0,
+  "publication_scan": {
+    "passed": true,
+    "private_runtime_values_absent": true,
+    "private_file_types_absent": true,
+    "files_within_github_limit": true
+  }
+}

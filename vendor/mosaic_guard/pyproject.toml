@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "source-causal-nesy-guard"
+version = "0.1.1"
+description = "A monotone neuro-symbolic safety control plane for LLM agent actions."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Research prototype"}]
+dependencies = [
+  "pydantic>=2.7,<3",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "coverage>=7"]
+smt = ["z3-solver>=4.13"]
+ml = ["numpy>=1.26", "scikit-learn>=1.4"]
+
+[project.scripts]
+mosaic-guard = "scns_guard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

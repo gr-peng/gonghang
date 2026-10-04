@@ -1,0 +1,2 @@
+# Backwards-compatible full local-model install; lightweight run.py uses core only.
+-r requirements-local.txt

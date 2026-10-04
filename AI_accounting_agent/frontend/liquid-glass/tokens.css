@@ -1,0 +1,44 @@
+/* Quiet Glass design starter, not an entire UI. No fonts or network resources. */
+:root {
+  color-scheme: light;
+  --bg:#f4f6f9; --surface:#fff; --ink:#17212b; --muted:#566477;
+  --accent:#1d4ed8; --border:#dce3ea; --success:#166534;
+  --warning:#92400e; --danger:#b91c1c;
+  --radius-card:28px; --radius-input:18px; --radius-sheet:32px;
+  --page-gutter:20px; --glass-bg:rgba(255,255,255,.28);
+  --glass-sheen:linear-gradient(145deg,rgba(255,255,255,.56),rgba(255,255,255,.1) 48%,rgba(255,255,255,.26));
+  --glass-filter:blur(8px) saturate(135%);
+  --glass-edge:rgba(255,255,255,.78);
+  --glass-shadow:0 8px 24px rgba(31,49,73,.055),inset 0 1px 0 rgba(255,255,255,.96),inset 0 -1px 0 rgba(78,102,137,.055);
+  --glass-selected:rgba(100,143,227,.14);
+  --glass-primary:rgba(88,135,225,.2);
+  --glass-danger:rgba(254,226,226,.52);
+  --glass-sheet:rgba(249,252,255,.78);
+  --glass-hover:rgba(255,255,255,.5);
+  --nav-h:64px; --safe-bottom:env(safe-area-inset-bottom,0px);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); }
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+button:disabled { cursor:not-allowed; }
+button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.app-shell { position:relative; width:100%; max-width:430px; min-height:100vh; min-height:100dvh; margin-inline:auto; padding-top:env(safe-area-inset-top,0px); }
+.page-content { padding:16px var(--page-gutter) calc(var(--nav-h) + var(--safe-bottom) + 36px); }
+.surface-card { background:var(--surface); border-radius:var(--radius-card); padding:20px; border:1px solid rgba(23,33,43,.045); }
+.glass { background:var(--glass-sheen),var(--glass-bg); border:1px solid var(--glass-edge); box-shadow:var(--glass-shadow); -webkit-backdrop-filter:var(--glass-filter); backdrop-filter:var(--glass-filter); }
+.tab-bar { position:fixed; z-index:30; left:50%; transform:translateX(-50%); bottom:calc(12px + var(--safe-bottom)); width:calc(100% - 32px); max-width:398px; min-height:var(--nav-h); border-radius:999px; display:flex; justify-content:space-around; padding:6px; }
+.tab-bar a { min-width:64px; min-height:48px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; font-size:12px; color:var(--muted); text-decoration:none; border-radius:999px; }
+.tab-bar a[aria-current="page"] { color:var(--accent); background:rgba(29,78,216,.07); }
+.icon-button { width:44px; height:44px; flex-shrink:0; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
+.primary-button { min-height:52px; border:0; border-radius:999px; color:white; background:var(--accent); padding:14px 20px; font-weight:600; }
+.money { font-variant-numeric:tabular-nums; letter-spacing:-.025em; overflow-wrap:anywhere; }
+.hero-amount { font-size:clamp(30px,9.6vw,38px); line-height:1.16; font-weight:600; }
+.field { min-height:48px; padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius-input); background:var(--surface); color:var(--ink); }
+.sheet { border-radius:var(--radius-sheet) var(--radius-sheet) 0 0; background:rgba(255,255,255,.98); padding:20px 20px calc(20px + var(--safe-bottom)); max-height:92dvh; overflow-y:auto; overscroll-behavior:contain; }
+[data-reduce-transparency="true"] .glass { background:#f9fafc; -webkit-backdrop-filter:none; backdrop-filter:none; }
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) { .glass { background:#f9fafc; } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+[data-reduce-motion="true"] *,[data-reduce-motion="true"] *::before,[data-reduce-motion="true"] *::after { animation:none!important; transition:none!important; }
+/* Keyboard/composer positioning must be integrated with the actual page; do not stack composer on top of a fixed tab bar. */

@@ -1,0 +1,17 @@
+field_causal_guard:
+  detector_version: 0.1.0
+  effect_threshold: 0.5
+  min_full_replay_consistency: 0.8
+  audit_only: true
+
+activation_predicate:
+  audit_only: true
+  activation_threshold: 0.90
+  required_validation:
+    - held_out_attack_family
+    - held_out_source_combination
+    - held_out_turn_depth
+    - source_identity_swap
+    - position_swap
+    - paraphrase
+    - counterfactual_effect_calibration

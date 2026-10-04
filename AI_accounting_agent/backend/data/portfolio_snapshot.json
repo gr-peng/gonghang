@@ -1,0 +1,144 @@
+{
+  "as_of": "2025-12-05",
+  "base_currency": "CNY",
+  "total_balance": 1825000.0,
+  "day_change_pct": 0.008,
+  "ytd_return_pct": 0.214,
+  "accounts": [
+    {
+      "id": "alpha-core",
+      "name": "Alpha Core Fund",
+      "balance": 960000.0,
+      "day_change_pct": 0.006,
+      "ytd_return_pct": 0.198,
+      "benchmark_vs_pct": 0.032
+    },
+    {
+      "id": "quant-edge",
+      "name": "Quant Edge CTA",
+      "balance": 565000.0,
+      "day_change_pct": 0.011,
+      "ytd_return_pct": 0.247,
+      "benchmark_vs_pct": 0.041
+    },
+    {
+      "id": "income-shield",
+      "name": "Income Shield Credit",
+      "balance": 300000.0,
+      "day_change_pct": 0.003,
+      "ytd_return_pct": 0.092,
+      "benchmark_vs_pct": 0.018
+    }
+  ],
+  "holdings": [
+    {
+      "symbol": "700.HK",
+      "name": "Tencent Holdings",
+      "weight_pct": 22.5,
+      "cost_basis": 320.0,
+      "last_price": 336.5,
+      "pnl_pct": 5.16,
+      "theme": "China AI"
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA",
+      "weight_pct": 18.0,
+      "cost_basis": 96.0,
+      "last_price": 124.5,
+      "pnl_pct": 29.69,
+      "theme": "US Semis"
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla",
+      "weight_pct": 9.5,
+      "cost_basis": 182.0,
+      "last_price": 176.3,
+      "pnl_pct": -3.13,
+      "theme": "EV"
+    },
+    {
+      "symbol": "ASML",
+      "name": "ASML",
+      "weight_pct": 8.4,
+      "cost_basis": 760.0,
+      "last_price": 805.2,
+      "pnl_pct": 5.96,
+      "theme": "Lithography"
+    },
+    {
+      "symbol": "510500",
+      "name": "CSI 500 ETF",
+      "weight_pct": 12.0,
+      "cost_basis": 6.52,
+      "last_price": 6.35,
+      "pnl_pct": -2.60,
+      "theme": "China Midcap"
+    },
+    {
+      "symbol": "MCHI",
+      "name": "MSCI China ETF",
+      "weight_pct": 7.5,
+      "cost_basis": 49.0,
+      "last_price": 52.8,
+      "pnl_pct": 7.76,
+      "theme": "China Exposure"
+    },
+    {
+      "symbol": "GLD",
+      "name": "SPDR Gold Shares",
+      "weight_pct": 6.0,
+      "cost_basis": 182.5,
+      "last_price": 192.8,
+      "pnl_pct": 5.64,
+      "theme": "Hedge"
+    },
+    {
+      "symbol": "TLT",
+      "name": "US 20Y Treasury ETF",
+      "weight_pct": 5.1,
+      "cost_basis": 96.2,
+      "last_price": 92.3,
+      "pnl_pct": -4.05,
+      "theme": "Rates"
+    }
+  ],
+  "sector_allocation": [
+    {"sector": "Tech Platform", "weight_pct": 34.0},
+    {"sector": "Semiconductor", "weight_pct": 21.0},
+    {"sector": "Consumer", "weight_pct": 12.0},
+    {"sector": "ETF & Beta", "weight_pct": 19.5},
+    {"sector": "Defensive", "weight_pct": 13.5}
+  ],
+  "nav_history": [
+    {"date": "2025-11-21", "nav": 1.032},
+    {"date": "2025-11-22", "nav": 1.034},
+    {"date": "2025-11-25", "nav": 1.037},
+    {"date": "2025-11-26", "nav": 1.031},
+    {"date": "2025-11-27", "nav": 1.028},
+    {"date": "2025-11-28", "nav": 1.035},
+    {"date": "2025-12-02", "nav": 1.041},
+    {"date": "2025-12-03", "nav": 1.043},
+    {"date": "2025-12-04", "nav": 1.045},
+    {"date": "2025-12-05", "nav": 1.047}
+  ],
+  "cash_flows": [
+    {"date": "2025-11-29", "type": "subscription", "amount": 120000.0},
+    {"date": "2025-12-03", "type": "redemption", "amount": -45000.0}
+  ],
+  "insights": {
+    "top_gainers": [
+      {"symbol": "NVDA", "move_pct": 4.2, "driver": "AI server orders"},
+      {"symbol": "GLD", "move_pct": 1.1, "driver": "real rate drop"}
+    ],
+    "top_losers": [
+      {"symbol": "TSLA", "move_pct": -2.4, "driver": "delivery guidance"},
+      {"symbol": "TLT", "move_pct": -1.3, "driver": "curve steepening"}
+    ],
+    "macro": [
+      "US payrolls softer, boosting Fed cut expectations",
+      "CN credit impulse stabilizing, supporting beta"
+    ]
+  }
+}

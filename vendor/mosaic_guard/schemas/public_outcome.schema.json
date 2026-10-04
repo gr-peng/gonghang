@@ -1,0 +1,42 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "blocked",
+        "needs_confirmation",
+        "needs_mfa",
+        "authorized_not_executed",
+        "succeeded",
+        "unknown"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "action_digest": {
+      "title": "Action Digest",
+      "type": "string"
+    },
+    "receipt_hash": {
+      "title": "Receipt Hash",
+      "type": "string"
+    },
+    "data": {
+      "additionalProperties": true,
+      "title": "Data",
+      "type": "object"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "action_digest",
+    "receipt_hash",
+    "message"
+  ],
+  "title": "PublicOutcome",
+  "type": "object"
+}

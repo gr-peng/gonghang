@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "ActionContract": {
+      "additionalProperties": false,
+      "properties": {
+        "write_action": {
+          "title": "Write Action",
+          "type": "boolean"
+        },
+        "allow_extra_params": {
+          "default": false,
+          "title": "Allow Extra Params",
+          "type": "boolean"
+        },
+        "fields": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FieldContract"
+          },
+          "title": "Fields",
+          "type": "object"
+        },
+        "allowed_control_source_kinds": {
+          "items": {
+            "$ref": "#/$defs/SourceKind"
+          },
+          "title": "Allowed Control Source Kinds",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "min_control_trust": {
+          "$ref": "#/$defs/SourceTrust",
+          "default": 2
+        }
+      },
+      "required": [
+        "write_action",
+        "fields"
+      ],
+      "title": "ActionContract",
+      "type": "object"
+    },
+    "ArgumentRole": {
+      "enum": [
+        "content",
+        "target",
+        "amount",
+        "command",
+        "credential",
+        "selector",
+        "identifier",
+        "other"
+      ],
+      "title": "ArgumentRole",
+      "type": "string"
+    },
+    "FieldContract": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/ArgumentRole"
+        },
+        "required": {
+          "default": true,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "provenance_required": {
+          "default": true,
+          "title": "Provenance Required",
+          "type": "boolean"
+        },
+        "min_trust": {
+          "$ref": "#/$defs/SourceTrust",
+          "default": 0
+        },
+        "allowed_source_kinds": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/SourceKind"
+              },
+              "type": "array",
+              "uniqueItems": true
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allowed Source Kinds"
+        },
+        "on_missing": {
+          "$ref": "#/$defs/RiskLevel",
+          "default": 3
+        },
+        "on_violation": {
+          "$ref": "#/$defs/RiskLevel",
+          "default": 2
+        },
+        "causal_sensitive": {
+          "default": true,
+          "title": "Causal Sensitive",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "role"
+      ],
+      "title": "FieldContract",
+      "type": "object"
+    },
+    "PolicyRule": {
+      "additionalProperties": false,
+      "properties": {
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "when": {
+          "additionalProperties": true,
+          "title": "When",
+          "type": "object"
+        },
+        "effect": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "action",
+        "when",
+        "effect",
+        "reason"
+      ],
+      "title": "PolicyRule",
+      "type": "object"
+    },
+    "RiskLevel": {
+      "description": "Ordered risk lattice used by both hard policy and detectors.",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "RiskLevel",
+      "type": "integer"
+    },
+    "SourceKind": {
+      "enum": [
+        "user",
+        "rag",
+        "tool",
+        "memory",
+        "agent",
+        "trusted_service",
+        "system",
+        "unknown"
+      ],
+      "title": "SourceKind",
+      "type": "string"
+    },
+    "SourceTrust": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "SourceTrust",
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "policy_id": {
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "default_level": {
+      "$ref": "#/$defs/RiskLevel",
+      "default": 3
+    },
+    "action_contracts": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ActionContract"
+      },
+      "title": "Action Contracts",
+      "type": "object"
+    },
+    "rules": {
+      "items": {
+        "$ref": "#/$defs/PolicyRule"
+      },
+      "title": "Rules",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "policy_id",
+    "version",
+    "action_contracts",
+    "rules"
+  ],
+  "title": "PolicySpec",
+  "type": "object"
+}

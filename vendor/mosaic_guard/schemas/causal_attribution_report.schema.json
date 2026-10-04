@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "InfluenceEstimate": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "mean_effect": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Mean Effect",
+          "type": "number"
+        },
+        "changed_pairs": {
+          "minimum": 0,
+          "title": "Changed Pairs",
+          "type": "integer"
+        },
+        "total_pairs": {
+          "exclusiveMinimum": 0,
+          "title": "Total Pairs",
+          "type": "integer"
+        },
+        "full_replay_consistency": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Full Replay Consistency",
+          "type": "number"
+        },
+        "intervention": {
+          "default": "source_ablation",
+          "title": "Intervention",
+          "type": "string"
+        },
+        "examples": {
+          "default": [],
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Examples",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source_id",
+        "field",
+        "mean_effect",
+        "changed_pairs",
+        "total_pairs",
+        "full_replay_consistency"
+      ],
+      "title": "InfluenceEstimate",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "trace_id": {
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "action_type": {
+      "title": "Action Type",
+      "type": "string"
+    },
+    "target_action_digest": {
+      "title": "Target Action Digest",
+      "type": "string"
+    },
+    "estimates": {
+      "items": {
+        "$ref": "#/$defs/InfluenceEstimate"
+      },
+      "title": "Estimates",
+      "type": "array"
+    },
+    "seeds": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Seeds",
+      "type": "array"
+    },
+    "intervention_note": {
+      "default": "paired common-random-number source ablation; causal interpretation is conditional on intervention validity",
+      "title": "Intervention Note",
+      "type": "string"
+    }
+  },
+  "required": [
+    "trace_id",
+    "action_type",
+    "target_action_digest",
+    "estimates",
+    "seeds"
+  ],
+  "title": "CausalAttributionReport",
+  "type": "object"
+}

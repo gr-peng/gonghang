@@ -1,0 +1,38 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "from_account": {
+      "title": "From Account",
+      "type": "string"
+    },
+    "to_account": {
+      "title": "To Account",
+      "type": "string"
+    },
+    "amount_minor": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "memo": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Memo"
+    }
+  },
+  "required": [
+    "from_account",
+    "to_account",
+    "amount_minor"
+  ],
+  "title": "TransferParams",
+  "type": "object"
+}

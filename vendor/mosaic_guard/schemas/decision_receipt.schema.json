@@ -1,0 +1,933 @@
+{
+  "$defs": {
+    "ActionProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "session_id": {
+          "title": "Session Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "action_type": {
+          "title": "Action Type",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "sources": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "argument_bindings": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ArgumentBinding"
+          },
+          "title": "Argument Bindings",
+          "type": "array"
+        },
+        "proposed_at": {
+          "format": "date-time",
+          "title": "Proposed At",
+          "type": "string"
+        },
+        "write_action": {
+          "default": true,
+          "title": "Write Action",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "session_id",
+        "actor_id",
+        "action_type",
+        "params"
+      ],
+      "title": "ActionProposal",
+      "type": "object"
+    },
+    "ArgumentBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "source_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "role": {
+          "$ref": "#/$defs/ArgumentRole",
+          "default": "other"
+        },
+        "observed_provenance_complete": {
+          "default": false,
+          "title": "Observed Provenance Complete",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "title": "ArgumentBinding",
+      "type": "object"
+    },
+    "ArgumentRole": {
+      "enum": [
+        "content",
+        "target",
+        "amount",
+        "command",
+        "credential",
+        "selector",
+        "identifier",
+        "other"
+      ],
+      "title": "ArgumentRole",
+      "type": "string"
+    },
+    "AuthorizationDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "title": "Decision Id",
+          "type": "string"
+        },
+        "action_digest": {
+          "title": "Action Digest",
+          "type": "string"
+        },
+        "base_level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "final_level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "status": {
+          "$ref": "#/$defs/DecisionStatus"
+        },
+        "required_obligations": {
+          "items": {
+            "$ref": "#/$defs/ObligationType"
+          },
+          "title": "Required Obligations",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "discharged_obligations": {
+          "items": {
+            "$ref": "#/$defs/ObligationType"
+          },
+          "title": "Discharged Obligations",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "missing_obligations": {
+          "items": {
+            "$ref": "#/$defs/ObligationType"
+          },
+          "title": "Missing Obligations",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "policy_evaluation": {
+          "$ref": "#/$defs/PolicyEvaluation"
+        },
+        "detector_signals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/DetectorSignal"
+          },
+          "title": "Detector Signals",
+          "type": "array"
+        },
+        "fact_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Fact Ids",
+          "type": "array"
+        },
+        "token_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Token Ids",
+          "type": "array"
+        },
+        "evaluated_at": {
+          "format": "date-time",
+          "title": "Evaluated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_digest",
+        "base_level",
+        "final_level",
+        "status",
+        "required_obligations",
+        "discharged_obligations",
+        "missing_obligations",
+        "policy_evaluation"
+      ],
+      "title": "AuthorizationDecision",
+      "type": "object"
+    },
+    "DecisionStatus": {
+      "enum": [
+        "allow",
+        "require_confirmation",
+        "require_mfa",
+        "deny"
+      ],
+      "title": "DecisionStatus",
+      "type": "string"
+    },
+    "DetectorEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "intervention": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Intervention"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "title": "DetectorEvidence",
+      "type": "object"
+    },
+    "DetectorSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "detector_id": {
+          "title": "Detector Id",
+          "type": "string"
+        },
+        "detector_version": {
+          "title": "Detector Version",
+          "type": "string"
+        },
+        "level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "score": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Score",
+          "type": "number"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "evidence": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/DetectorEvidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "audit_only": {
+          "default": false,
+          "title": "Audit Only",
+          "type": "boolean"
+        },
+        "produced_at": {
+          "format": "date-time",
+          "title": "Produced At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "detector_id",
+        "detector_version",
+        "level",
+        "score",
+        "reason"
+      ],
+      "title": "DetectorSignal",
+      "type": "object"
+    },
+    "ExecutionRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "execution_id": {
+          "title": "Execution Id",
+          "type": "string"
+        },
+        "action_digest": {
+          "title": "Action Digest",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/ExecutionState"
+        },
+        "decision_id": {
+          "title": "Decision Id",
+          "type": "string"
+        },
+        "tool_name": {
+          "title": "Tool Name",
+          "type": "string"
+        },
+        "before_state": {
+          "additionalProperties": true,
+          "title": "Before State",
+          "type": "object"
+        },
+        "after_state": {
+          "additionalProperties": true,
+          "title": "After State",
+          "type": "object"
+        },
+        "tool_result": {
+          "additionalProperties": true,
+          "title": "Tool Result",
+          "type": "object"
+        },
+        "executed_at": {
+          "format": "date-time",
+          "title": "Executed At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_digest",
+        "state",
+        "decision_id",
+        "tool_name",
+        "before_state",
+        "after_state",
+        "tool_result"
+      ],
+      "title": "ExecutionRecord",
+      "type": "object"
+    },
+    "ExecutionState": {
+      "enum": [
+        "proposed",
+        "evaluated",
+        "obligation_pending",
+        "authorized",
+        "executed",
+        "denied",
+        "failed"
+      ],
+      "title": "ExecutionState",
+      "type": "string"
+    },
+    "FactTrust": {
+      "enum": [
+        "trusted",
+        "untrusted"
+      ],
+      "title": "FactTrust",
+      "type": "string"
+    },
+    "FieldDerivationEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "output_field": {
+          "title": "Output Field",
+          "type": "string"
+        },
+        "parent_source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Parent Source Ids",
+          "type": "array"
+        },
+        "operation": {
+          "title": "Operation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "output_field",
+        "parent_source_ids",
+        "operation"
+      ],
+      "title": "FieldDerivationEdge",
+      "type": "object"
+    },
+    "FormalReceiptLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/ActionProposal"
+        },
+        "trusted_facts": {
+          "items": {
+            "$ref": "#/$defs/TrustedFact"
+          },
+          "title": "Trusted Facts",
+          "type": "array"
+        },
+        "verified_tokens": {
+          "items": {
+            "$ref": "#/$defs/ObligationToken"
+          },
+          "title": "Verified Tokens",
+          "type": "array"
+        },
+        "policy_snapshot": {
+          "additionalProperties": true,
+          "title": "Policy Snapshot",
+          "type": "object"
+        },
+        "controller_config": {
+          "additionalProperties": true,
+          "title": "Controller Config",
+          "type": "object"
+        },
+        "policy_evaluation": {
+          "$ref": "#/$defs/PolicyEvaluation"
+        },
+        "decision": {
+          "$ref": "#/$defs/AuthorizationDecision"
+        },
+        "execution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExecutionRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "action",
+        "trusted_facts",
+        "verified_tokens",
+        "policy_snapshot",
+        "policy_evaluation",
+        "decision"
+      ],
+      "title": "FormalReceiptLayer",
+      "type": "object"
+    },
+    "InternalEvidenceLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "signals": {
+          "items": {
+            "$ref": "#/$defs/DetectorSignal"
+          },
+          "title": "Signals",
+          "type": "array"
+        },
+        "note": {
+          "const": "internal evidence is risk evidence, not authorization proof",
+          "default": "internal evidence is risk evidence, not authorization proof",
+          "title": "Note",
+          "type": "string"
+        }
+      },
+      "required": [
+        "signals"
+      ],
+      "title": "InternalEvidenceLayer",
+      "type": "object"
+    },
+    "ObligationToken": {
+      "additionalProperties": false,
+      "properties": {
+        "token_id": {
+          "title": "Token Id",
+          "type": "string"
+        },
+        "obligation": {
+          "$ref": "#/$defs/ObligationType"
+        },
+        "action_digest": {
+          "title": "Action Digest",
+          "type": "string"
+        },
+        "session_id": {
+          "title": "Session Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "issuer": {
+          "title": "Issuer",
+          "type": "string"
+        },
+        "issued_at": {
+          "format": "date-time",
+          "title": "Issued At",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "signature": {
+          "title": "Signature",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "obligation",
+        "action_digest",
+        "session_id",
+        "actor_id",
+        "issuer",
+        "expires_at",
+        "signature"
+      ],
+      "title": "ObligationToken",
+      "type": "object"
+    },
+    "ObligationType": {
+      "enum": [
+        "confirmation",
+        "mfa",
+        "human_review"
+      ],
+      "title": "ObligationType",
+      "type": "string"
+    },
+    "PolicyEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_id": {
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_version": {
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "policy_hash": {
+          "title": "Policy Hash",
+          "type": "string"
+        },
+        "base_level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "matched_rule_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Matched Rule Ids",
+          "type": "array"
+        },
+        "trace": {
+          "items": {
+            "$ref": "#/$defs/RuleTrace"
+          },
+          "title": "Trace",
+          "type": "array"
+        },
+        "argument_contract_violations": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Argument Contract Violations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_id",
+        "policy_version",
+        "policy_hash",
+        "base_level",
+        "matched_rule_ids",
+        "trace"
+      ],
+      "title": "PolicyEvaluation",
+      "type": "object"
+    },
+    "RiskLevel": {
+      "description": "Ordered risk lattice used by both hard policy and detectors.",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "RiskLevel",
+      "type": "integer"
+    },
+    "RuleTrace": {
+      "additionalProperties": false,
+      "properties": {
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "matched": {
+          "title": "Matched",
+          "type": "boolean"
+        },
+        "effect": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RiskLevel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "rule_id",
+        "matched"
+      ],
+      "title": "RuleTrace",
+      "type": "object"
+    },
+    "SourceKind": {
+      "enum": [
+        "user",
+        "rag",
+        "tool",
+        "memory",
+        "agent",
+        "trusted_service",
+        "system",
+        "unknown"
+      ],
+      "title": "SourceKind",
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/SourceKind"
+        },
+        "trust": {
+          "$ref": "#/$defs/SourceTrust"
+        },
+        "content_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Content Hash"
+        },
+        "parent_source_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Parent Source Ids",
+          "type": "array"
+        },
+        "ancestor_source_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Ancestor Source Ids",
+          "type": "array"
+        },
+        "transformation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transformation"
+        },
+        "producer_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Producer Id"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "field_derivations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FieldDerivationEdge"
+          },
+          "title": "Field Derivations",
+          "type": "array"
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signature"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source_id",
+        "kind",
+        "trust"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "SourceTrust": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "SourceTrust",
+      "type": "integer"
+    },
+    "TrustedFact": {
+      "additionalProperties": false,
+      "properties": {
+        "fact_id": {
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "predicate": {
+          "title": "Predicate",
+          "type": "string"
+        },
+        "subject": {
+          "title": "Subject",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        },
+        "issuer": {
+          "title": "Issuer",
+          "type": "string"
+        },
+        "trust": {
+          "$ref": "#/$defs/FactTrust",
+          "default": "trusted"
+        },
+        "issued_at": {
+          "format": "date-time",
+          "title": "Issued At",
+          "type": "string"
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expires At"
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signature"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "predicate",
+        "subject",
+        "value",
+        "issuer"
+      ],
+      "title": "TrustedFact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "receipt_id": {
+      "title": "Receipt Id",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "previous_receipt_hash": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Previous Receipt Hash"
+    },
+    "formal": {
+      "$ref": "#/$defs/FormalReceiptLayer"
+    },
+    "internal": {
+      "$ref": "#/$defs/InternalEvidenceLayer"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "receipt_hash": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Receipt Hash"
+    }
+  },
+  "required": [
+    "sequence",
+    "formal",
+    "internal"
+  ],
+  "title": "DecisionReceipt",
+  "type": "object"
+}

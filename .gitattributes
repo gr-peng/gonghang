@@ -1,0 +1,10 @@
+# Preserve reviewed bytes and dataset hashes across platforms.
+* -text
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.pptx binary
+*.zip binary
+*.safetensors binary

@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "timeout",
+        "output_limit"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Exit Code"
+    },
+    "stdout": {
+      "title": "Stdout",
+      "type": "string"
+    },
+    "stderr": {
+      "title": "Stderr",
+      "type": "string"
+    },
+    "duration_seconds": {
+      "title": "Duration Seconds",
+      "type": "number"
+    },
+    "code_sha256": {
+      "title": "Code Sha256",
+      "type": "string"
+    },
+    "image": {
+      "title": "Image",
+      "type": "string"
+    },
+    "cleanup_verified": {
+      "title": "Cleanup Verified",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "status",
+    "exit_code",
+    "stdout",
+    "stderr",
+    "duration_seconds",
+    "code_sha256",
+    "image",
+    "cleanup_verified"
+  ],
+  "title": "SandboxResult",
+  "type": "object"
+}

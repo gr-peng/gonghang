@@ -1,0 +1,81 @@
+{
+  "$defs": {
+    "FactTrust": {
+      "enum": [
+        "trusted",
+        "untrusted"
+      ],
+      "title": "FactTrust",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "fact_id": {
+      "title": "Fact Id",
+      "type": "string"
+    },
+    "predicate": {
+      "title": "Predicate",
+      "type": "string"
+    },
+    "subject": {
+      "title": "Subject",
+      "type": "string"
+    },
+    "value": {
+      "title": "Value"
+    },
+    "issuer": {
+      "title": "Issuer",
+      "type": "string"
+    },
+    "trust": {
+      "$ref": "#/$defs/FactTrust",
+      "default": "trusted"
+    },
+    "issued_at": {
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expires At"
+    },
+    "signature": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Signature"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "predicate",
+    "subject",
+    "value",
+    "issuer"
+  ],
+  "title": "TrustedFact",
+  "type": "object"
+}

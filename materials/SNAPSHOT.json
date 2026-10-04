@@ -1,0 +1,43 @@
+{
+  "version": "2026-10-04-judge-fixes-finance-v4",
+  "repository": "https://github.com/gr-peng/gonghang",
+  "branch": "main",
+  "upstream": "https://github.com/gr-peng/FinTechathon",
+  "upstream_base_commit": "8a68b0ce23047aa0fb11e1ed5484af7e4010d9aa",
+  "upstream_note": "Current working application includes later changes beyond this historical commit.",
+  "portable_source_bundle_sha256": "68f4651088a2c2b9686652e0b40f4b9f681b49391714f4b6d28eb9928e853bef",
+  "model": "qingcai-qwen3-4b-finance-v4",
+  "adapter_sha256": "b7445ac2453391471483c4f4ed73a797e8380dcb314c49646bda7024b9b01e9e",
+  "portrait_max_width_px": 430,
+  "route_count": 19,
+  "presentation_slides": 13,
+  "retrained_during_publication": false,
+  "includes": [
+    "current application",
+    "training and evaluation scripts",
+    "synthetic datasets",
+    "finance-v4 adapter and tokenizer",
+    "historical research fixtures",
+    "tests",
+    "PPT and PDF",
+    "competition documents",
+    "validation and file manifests"
+  ],
+  "excludes": [
+    "private ledgers",
+    "runtime state",
+    "environment credentials",
+    "access tokens",
+    "financial sessions",
+    "TOTP secrets",
+    "base model weights"
+  ],
+  "publishing_changes": [
+    "repository README and directory navigation",
+    "public documentation status",
+    "portable configuration comment",
+    "organized materials",
+    "ignore rules, original executable modes and byte-preserving attributes"
+  ],
+  "runtime_source_files_equal_to_deployed_checkout": 379
+}

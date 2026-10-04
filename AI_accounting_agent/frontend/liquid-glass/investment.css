@@ -1,0 +1,49 @@
+/* Investment remains inside the original portrait app shell. */
+.investment-sections { gap:3px; padding:4px; flex-shrink:0; }
+.investment-sections button { font-size:13px; min-height:44px; white-space:nowrap; }
+.investment-sections button[aria-current=page] { background:#fff; color:var(--ink); font-weight:600; box-shadow:0 2px 4px #17212b08; }
+.planning-summary { background:linear-gradient(130deg,#fbfdff,#edf2fb); }
+.planning-summary .hero-amount { font-size:34px; font-weight:600; letter-spacing:-.04em; }
+.planning-summary .finance-metrics { margin-top:20px; }
+.investment-month .month-choice { padding-inline:16px; }
+.funding-plan .plan-preview { margin:16px 0 20px; }
+.funding-plan .plan-preview strong { font-size:29px; }
+.funding-breakdown { display:grid; gap:14px; margin:18px 0; font-size:14px; }
+.funding-breakdown>div { display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+.funding-breakdown dt { color:var(--muted); }
+.funding-breakdown dd { margin:0; text-align:right; font-variant-numeric:tabular-nums; }
+.planning-basis { border-top:1px solid #e6ebf3; margin-top:18px; padding-top:6px; }
+.planning-basis>summary { color:var(--muted); font-size:13px; }
+.planning-gap { display:flex; justify-content:space-between; gap:12px; color:#9b502e; background:#faf0e9; padding:13px; border-radius:16px; font-size:13px; }
+.goal-progress-line { display:flex; justify-content:space-between; gap:12px; margin:14px 0; font-size:13px; color:var(--muted); }
+.goal-progress-line strong { color:var(--ink); font-weight:500; }
+.reserve-target { display:flex; justify-content:space-between; gap:14px; align-items:center; margin-top:22px; padding-top:20px; border-top:1px solid #e6ebf3; font-size:14px; }
+.reserve-target>div { display:grid; gap:5px; }
+.reserve-target span { color:var(--muted); font-size:13px; }
+.planning-preference { margin-top:16px; font-size:14px; }
+.investment-next { display:grid; gap:10px; }
+.simulated-assets .hero-amount { font-size:34px; }
+.holdings-products .finance-product { padding-block:20px; }
+.product-capacity { display:flex; justify-content:space-between; gap:12px; margin-top:14px; padding-top:12px; border-top:1px solid #edf0f4; font-size:13px; }
+.product-unavailable { color:var(--muted); margin:12px 0 0; font-size:14px; }
+.research-funding .plan-preview { margin:12px 0; }
+.research-funding .plan-preview strong { font-size:26px; }
+.research-page .stock-row { min-width:0; }
+.research-page .stock-row .right { flex-shrink:0; }
+.research-page .stock-row .grow { overflow-wrap:anywhere; }
+.research-page .feature-links button { min-height:50px; }
+.research-page-stack { display:flex; flex-direction:column; gap:16px; min-width:0; }
+.research-plan-summary { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.research-plan-summary>div { min-width:0; }
+.research-plan-summary strong { display:block; font-size:23px; margin-top:7px; font-weight:600; }
+.research-plan-label,.research-symbol-code,.research-snapshot-date,.research-history-range { display:block; color:var(--muted); font-size:12px; }
+.research-snapshot-date,.research-history-range { margin-top:14px; }
+.research-symbol-code { margin-top:4px; }
+.research-holding-value { font-size:12px; max-width:45%; }
+.research-holding-value>span { display:block; margin-top:4px; }
+.research-favorite { color:var(--accent); }
+@media(max-width:374px) {
+  .planning-summary .hero-amount,.simulated-assets .hero-amount { font-size:31px; }
+  .funding-plan .plan-preview strong { font-size:27px; }
+  .reserve-target { align-items:flex-start; }
+}

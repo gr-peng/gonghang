@@ -1,0 +1,117 @@
+[
+  {
+    "text": "今天中午用微信吃饭花了28元",
+    "expected": {
+      "category": "餐饮",
+      "type": "expense",
+      "amount": 28,
+      "event_date": "2026-10-03",
+      "payment_method": "微信支付"
+    }
+  },
+  {
+    "text": "昨天交房租5800元，银行卡支付",
+    "expected": {
+      "category": "住房",
+      "type": "expense",
+      "amount": 5800,
+      "event_date": "2026-10-02",
+      "payment_method": "银行卡"
+    }
+  },
+  {
+    "text": "2026年9月30日买药38.5元",
+    "expected": {
+      "category": "医疗健康",
+      "type": "expense",
+      "amount": 38.5,
+      "event_date": "2026-09-30"
+    }
+  },
+  {
+    "text": "今天银行卡收到税后工资22500元",
+    "expected": {
+      "category": "工资",
+      "type": "income",
+      "amount": 22500,
+      "event_date": "2026-10-03",
+      "payment_method": "银行卡"
+    }
+  },
+  {
+    "text": "今天收到银行存款利息0.01元",
+    "expected": {
+      "category": "理财收益",
+      "type": "income",
+      "amount": 0.01
+    }
+  },
+  {
+    "text": "今天收到年终奖金10万元",
+    "expected": {
+      "category": "奖金",
+      "type": "income",
+      "amount": 100000
+    }
+  },
+  {
+    "text": "今天课程学费1200元，支付宝付的",
+    "expected": {
+      "category": "教育学习",
+      "type": "expense",
+      "amount": 1200
+    }
+  },
+  {
+    "text": "今天买医疗保险花2800元",
+    "expected": {
+      "category": "保险",
+      "type": "expense",
+      "amount": 2800
+    }
+  },
+  {
+    "text": "今天朋友结婚给了500元礼金",
+    "expected": {
+      "category": "人情往来",
+      "type": "expense",
+      "amount": 500
+    }
+  },
+  {
+    "text": "今天旅行住酒店花了680元",
+    "expected": {
+      "category": "旅行",
+      "type": "expense",
+      "amount": 680
+    }
+  },
+  {
+    "text": "今天收到了耳机退货退款129元",
+    "expected": {
+      "category": "退款",
+      "type": "income",
+      "amount": 129
+    }
+  },
+  {
+    "text": "今天从自己的银行卡转到自己的支付宝500元",
+    "clarify": true
+  },
+  {
+    "text": "今天信用卡还款3200元",
+    "clarify": true
+  },
+  {
+    "text": "今天午餐没说价格，帮我记一下",
+    "clarify": true
+  },
+  {
+    "text": "午餐30元，晚餐50元，帮我记账",
+    "clarify": true
+  },
+  {
+    "text": "今天酒店花了100美元",
+    "clarify": true
+  }
+]

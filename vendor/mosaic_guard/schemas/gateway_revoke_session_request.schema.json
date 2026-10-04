@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "actor_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "proof": {
+      "maxLength": 16384,
+      "minLength": 1,
+      "title": "Proof",
+      "type": "string"
+    },
+    "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "actor_id",
+    "proof",
+    "session_id"
+  ],
+  "title": "RevokeSessionRequest",
+  "type": "object"
+}

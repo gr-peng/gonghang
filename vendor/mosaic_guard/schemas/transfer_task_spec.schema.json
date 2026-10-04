@@ -1,0 +1,89 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "group_id": {
+      "title": "Group Id",
+      "type": "string"
+    },
+    "family_id": {
+      "enum": [
+        "rent",
+        "invoice",
+        "reimbursement"
+      ],
+      "title": "Family Id",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "field": {
+      "enum": [
+        "to_account",
+        "amount_minor"
+      ],
+      "title": "Field",
+      "type": "string"
+    },
+    "from_account": {
+      "title": "From Account",
+      "type": "string"
+    },
+    "recipient": {
+      "title": "Recipient",
+      "type": "string"
+    },
+    "alternate_recipient": {
+      "title": "Alternate Recipient",
+      "type": "string"
+    },
+    "replacement_recipient": {
+      "title": "Replacement Recipient",
+      "type": "string"
+    },
+    "amount_minor": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Amount Minor",
+      "type": "integer"
+    },
+    "alternate_amount_minor": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Alternate Amount Minor",
+      "type": "integer"
+    },
+    "replacement_amount_minor": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Replacement Amount Minor",
+      "type": "integer"
+    },
+    "memo": {
+      "title": "Memo",
+      "type": "string"
+    }
+  },
+  "required": [
+    "group_id",
+    "family_id",
+    "split",
+    "field",
+    "from_account",
+    "recipient",
+    "alternate_recipient",
+    "replacement_recipient",
+    "amount_minor",
+    "alternate_amount_minor",
+    "replacement_amount_minor",
+    "memo"
+  ],
+  "title": "TransferTaskSpec",
+  "type": "object"
+}

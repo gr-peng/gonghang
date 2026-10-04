@@ -1,0 +1,42 @@
+{
+  "version": "finance-v4",
+  "created_at": "2026-10-03T00:45:48.270437+00:00",
+  "feedback_rows": 1,
+  "training_source": "authored_synthetic_plus_explicitly_reviewed_structured_feedback",
+  "feedback_provenance": "isolated_browser_developer_fixture_not_real_user",
+  "accounting_training_replay_copies": 2,
+  "privacy": "no_original_chat_account_names_precise_amounts_or_authentication_data",
+  "split_policy": "disjoint_banking_template_families_plus_unchanged_accounting_v2_splits",
+  "splits": {
+    "train": {
+      "rows": 3542,
+      "accounting_rows": 1393,
+      "banking_rows": 500,
+      "profile_rows": 256,
+      "sha256": "f448c8774fd713dcc240ca694f3638dbde1b7dcd5abde531886caae23dd4f519"
+    },
+    "validation": {
+      "rows": 244,
+      "accounting_rows": 174,
+      "banking_rows": 38,
+      "profile_rows": 32,
+      "sha256": "6677525dff3f83acfb38ec8878808480e93fb454cd1120bc11da82a0498b2c88"
+    },
+    "test": {
+      "rows": 317,
+      "accounting_rows": 174,
+      "banking_rows": 79,
+      "profile_rows": 64,
+      "sha256": "588214e79279b5c07dd51924062724340ae15717112df22cf96d0a637c235c84"
+    }
+  },
+  "release_gate": {
+    "bank_intent_min_accuracy": 0.95,
+    "profile_reason_min_accuracy": 0.95,
+    "fixed_accounting_no_regression": true
+  },
+  "banking_input_overlap": 0,
+  "feedback_ids": [
+    "484b0c1d-ca6f-41ce-a626-26e46138db24"
+  ]
+}

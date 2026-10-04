@@ -1,0 +1,185 @@
+{
+  "$defs": {
+    "BalanceDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "account_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Account Id"
+        }
+      },
+      "title": "BalanceDraft",
+      "type": "object"
+    },
+    "BalanceTaskOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "mosaic-planner-v2",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "kind": {
+          "const": "task",
+          "title": "Kind",
+          "type": "string"
+        },
+        "action_type": {
+          "const": "read_balance",
+          "title": "Action Type",
+          "type": "string"
+        },
+        "params": {
+          "$ref": "#/$defs/BalanceDraft"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "action_type",
+        "params"
+      ],
+      "title": "BalanceTaskOutput",
+      "type": "object"
+    },
+    "NoActionOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "mosaic-planner-v2",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "kind": {
+          "const": "no_action",
+          "title": "Kind",
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "unsupported_request",
+            "cancelled"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "reason"
+      ],
+      "title": "NoActionOutput",
+      "type": "object"
+    },
+    "TransferDraft": {
+      "additionalProperties": false,
+      "properties": {
+        "from_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Account"
+        },
+        "to_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Account"
+        },
+        "amount_minor": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 9223372036854775807,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amount Minor"
+        },
+        "memo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Memo"
+        }
+      },
+      "title": "TransferDraft",
+      "type": "object"
+    },
+    "TransferTaskOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "mosaic-planner-v2",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "kind": {
+          "const": "task",
+          "title": "Kind",
+          "type": "string"
+        },
+        "action_type": {
+          "const": "transfer",
+          "title": "Action Type",
+          "type": "string"
+        },
+        "params": {
+          "$ref": "#/$defs/TransferDraft"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "action_type",
+        "params"
+      ],
+      "title": "TransferTaskOutput",
+      "type": "object"
+    }
+  },
+  "anyOf": [
+    {
+      "$ref": "#/$defs/TransferTaskOutput"
+    },
+    {
+      "$ref": "#/$defs/BalanceTaskOutput"
+    },
+    {
+      "$ref": "#/$defs/NoActionOutput"
+    }
+  ],
+  "description": "不可信模型响应；不包含权限、来源绑定、令牌或模型生成的补问。",
+  "title": "ModelPlanningOutput"
+}

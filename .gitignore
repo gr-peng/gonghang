@@ -1,0 +1,50 @@
+# Local configuration and financial state
+.env
+.env.*
+!.env.example
+.runtime/
+.qingcai-workspace/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.pem
+*.key
+
+# Environments and generated caches
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage*
+htmlcov/
+*.log
+.DS_Store
+Thumbs.db
+
+# Base models and future training runs stay local.
+/Qwen*/
+/LLM_Models/
+/artifacts/*
+!/artifacts/accounting-v2/
+!/artifacts/finance-v4/
+/artifacts/accounting-v2/*
+!/artifacts/accounting-v2/train.jsonl
+!/artifacts/accounting-v2/validation.jsonl
+!/artifacts/accounting-v2/test.jsonl
+**/checkpoint-*/
+*.pt
+*.pth
+*.bin
+*.safetensors
+!/artifacts/finance-v4/adapter/adapter_model.safetensors
+
+# Generated exports; reviewed deliverables live in materials/.
+/dist/
+/build/

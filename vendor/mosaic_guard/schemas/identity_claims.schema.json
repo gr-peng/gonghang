@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "const": "identity",
+      "default": "identity",
+      "title": "Kind",
+      "type": "string"
+    },
+    "actor_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "scopes": {
+      "items": {
+        "enum": [
+          "agent:review",
+          "agent:execute",
+          "human:confirm",
+          "operator:reset",
+          "audit:read",
+          "sandbox:run",
+          "operator:revoke"
+        ],
+        "type": "string"
+      },
+      "title": "Scopes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "actor_id",
+    "session_id",
+    "scopes"
+  ],
+  "title": "IdentityClaims",
+  "type": "object"
+}

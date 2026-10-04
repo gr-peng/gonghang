@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "model_id": {
+      "title": "Model Id",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "feature_names": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Feature Names",
+      "type": "array"
+    },
+    "weights": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Weights",
+      "type": "array"
+    },
+    "bias": {
+      "default": 0.0,
+      "title": "Bias",
+      "type": "number"
+    },
+    "threshold": {
+      "default": 0.8,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Threshold",
+      "type": "number"
+    },
+    "training_label": {
+      "default": "paired_counterfactual_field_effect",
+      "title": "Training Label",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "model_id",
+    "version",
+    "feature_names",
+    "weights"
+  ],
+  "title": "LinearPredicateSpec",
+  "type": "object"
+}

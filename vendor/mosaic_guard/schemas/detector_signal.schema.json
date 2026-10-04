@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "DetectorEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        },
+        "intervention": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Intervention"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "title": "DetectorEvidence",
+      "type": "object"
+    },
+    "RiskLevel": {
+      "description": "Ordered risk lattice used by both hard policy and detectors.",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "RiskLevel",
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "detector_id": {
+      "title": "Detector Id",
+      "type": "string"
+    },
+    "detector_version": {
+      "title": "Detector Version",
+      "type": "string"
+    },
+    "level": {
+      "$ref": "#/$defs/RiskLevel"
+    },
+    "score": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Score",
+      "type": "number"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DetectorEvidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "audit_only": {
+      "default": false,
+      "title": "Audit Only",
+      "type": "boolean"
+    },
+    "produced_at": {
+      "format": "date-time",
+      "title": "Produced At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "detector_id",
+    "detector_version",
+    "level",
+    "score",
+    "reason"
+  ],
+  "title": "DetectorSignal",
+  "type": "object"
+}

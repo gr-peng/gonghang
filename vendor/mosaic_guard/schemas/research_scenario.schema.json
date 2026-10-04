@@ -1,0 +1,389 @@
+{
+  "$defs": {
+    "AgentTrace": {
+      "additionalProperties": false,
+      "properties": {
+        "trace_id": {
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "session_id": {
+          "title": "Session Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "messages": {
+          "items": {
+            "$ref": "#/$defs/SourceMessage"
+          },
+          "title": "Messages",
+          "type": "array"
+        },
+        "lineage_sources": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SourceRef"
+          },
+          "title": "Lineage Sources",
+          "type": "array"
+        },
+        "lineage_messages": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SourceMessage"
+          },
+          "title": "Lineage Messages",
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "trace_id",
+        "session_id",
+        "actor_id",
+        "messages"
+      ],
+      "title": "AgentTrace",
+      "type": "object"
+    },
+    "DelegationGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "action_type": {
+          "title": "Action Type",
+          "type": "string"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "authorized": {
+          "title": "Authorized",
+          "type": "boolean"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "action_type",
+        "field",
+        "authorized",
+        "rationale"
+      ],
+      "title": "DelegationGrant",
+      "type": "object"
+    },
+    "FieldDerivationEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "output_field": {
+          "title": "Output Field",
+          "type": "string"
+        },
+        "parent_source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Parent Source Ids",
+          "type": "array"
+        },
+        "operation": {
+          "title": "Operation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "output_field",
+        "parent_source_ids",
+        "operation"
+      ],
+      "title": "FieldDerivationEdge",
+      "type": "object"
+    },
+    "ModelActionOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {
+          "title": "Action Type",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "write_action": {
+          "default": true,
+          "title": "Write Action",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "action_type",
+        "params"
+      ],
+      "title": "ModelActionOutput",
+      "type": "object"
+    },
+    "RiskLevel": {
+      "description": "Ordered risk lattice used by both hard policy and detectors.",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "RiskLevel",
+      "type": "integer"
+    },
+    "SourceKind": {
+      "enum": [
+        "user",
+        "rag",
+        "tool",
+        "memory",
+        "agent",
+        "trusted_service",
+        "system",
+        "unknown"
+      ],
+      "title": "SourceKind",
+      "type": "string"
+    },
+    "SourceMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "text": {
+          "default": "",
+          "title": "Text",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "SourceMessage",
+      "type": "object"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/SourceKind"
+        },
+        "trust": {
+          "$ref": "#/$defs/SourceTrust"
+        },
+        "content_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Content Hash"
+        },
+        "parent_source_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Parent Source Ids",
+          "type": "array"
+        },
+        "ancestor_source_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Ancestor Source Ids",
+          "type": "array"
+        },
+        "transformation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transformation"
+        },
+        "producer_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Producer Id"
+        },
+        "created_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Created At"
+        },
+        "field_derivations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FieldDerivationEdge"
+          },
+          "title": "Field Derivations",
+          "type": "array"
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signature"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source_id",
+        "kind",
+        "trust"
+      ],
+      "title": "SourceRef",
+      "type": "object"
+    },
+    "SourceTrust": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "title": "SourceTrust",
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "scenario_id": {
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "group_id": {
+      "title": "Group Id",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "trace": {
+      "$ref": "#/$defs/AgentTrace"
+    },
+    "authorized_action": {
+      "$ref": "#/$defs/ModelActionOutput"
+    },
+    "protected_effect": {
+      "additionalProperties": true,
+      "title": "Protected Effect",
+      "type": "object"
+    },
+    "delegation": {
+      "items": {
+        "$ref": "#/$defs/DelegationGrant"
+      },
+      "title": "Delegation",
+      "type": "array"
+    },
+    "attack": {
+      "title": "Attack",
+      "type": "boolean"
+    },
+    "source_laundered": {
+      "default": false,
+      "title": "Source Laundered",
+      "type": "boolean"
+    },
+    "transformation_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Transformation Ids",
+      "type": "array"
+    },
+    "expected_min_level": {
+      "$ref": "#/$defs/RiskLevel",
+      "default": 0
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "scenario_id",
+    "group_id",
+    "split",
+    "trace",
+    "authorized_action",
+    "protected_effect",
+    "delegation",
+    "attack"
+  ],
+  "title": "ResearchScenario",
+  "type": "object"
+}

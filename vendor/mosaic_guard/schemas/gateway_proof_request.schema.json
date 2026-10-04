@@ -1,0 +1,23 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "handle": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Handle",
+      "type": "string"
+    },
+    "proof": {
+      "maxLength": 16384,
+      "minLength": 1,
+      "title": "Proof",
+      "type": "string"
+    }
+  },
+  "required": [
+    "handle",
+    "proof"
+  ],
+  "title": "ProofRequest",
+  "type": "object"
+}

@@ -1,0 +1,81 @@
+{
+  "$defs": {
+    "SandboxConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "image": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Image",
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "default": 5,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        },
+        "output_bytes": {
+          "default": 16384,
+          "maximum": 65536,
+          "minimum": 256,
+          "title": "Output Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "image"
+      ],
+      "title": "SandboxConfig",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1,
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "mode": {
+      "const": "durable_mock_only",
+      "default": "durable_mock_only",
+      "title": "Mode",
+      "type": "string"
+    },
+    "policy_path": {
+      "title": "Policy Path",
+      "type": "string"
+    },
+    "policy_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Policy Sha256",
+      "type": "string"
+    },
+    "port": {
+      "default": 8765,
+      "maximum": 65535,
+      "minimum": 1024,
+      "title": "Port",
+      "type": "integer"
+    },
+    "sandbox": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SandboxConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "policy_path",
+    "policy_sha256"
+  ],
+  "title": "ServiceConfig",
+  "type": "object"
+}

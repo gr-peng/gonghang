@@ -1,0 +1,87 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "row_id": {
+      "title": "Row Id",
+      "type": "string"
+    },
+    "group_id": {
+      "title": "Group Id",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "field": {
+      "title": "Field",
+      "type": "string"
+    },
+    "features": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Features",
+      "type": "object"
+    },
+    "label": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Label",
+      "type": "integer"
+    },
+    "effect": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Effect",
+      "type": "number"
+    },
+    "replay_consistency": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Replay Consistency",
+      "type": "number"
+    },
+    "intervention_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Intervention Ids",
+      "type": "array"
+    },
+    "label_kind": {
+      "const": "paired_counterfactual_field_effect",
+      "default": "paired_counterfactual_field_effect",
+      "title": "Label Kind",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "row_id",
+    "group_id",
+    "split",
+    "source_id",
+    "field",
+    "features",
+    "label",
+    "effect",
+    "replay_consistency",
+    "intervention_ids"
+  ],
+  "title": "PredicateTrainingRow",
+  "type": "object"
+}

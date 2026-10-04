@@ -1,0 +1,73 @@
+{
+  "base_model": "Qwen3-4B",
+  "dataset": "artifacts/finance-v4",
+  "dataset_manifest_sha256": "93fffe24770a258a82f30d270fa4b9fbf8ac173864ddd87b455fd3cab1ea703a",
+  "train_rows": 3542,
+  "validation_rows": 244,
+  "test_rows_evaluated": 317,
+  "steps": 444,
+  "epochs": 2,
+  "elapsed_seconds": 1625.8,
+  "best_validation_loss": 0.0005892911978716933,
+  "baseline_validation_loss": 0.03936180966109301,
+  "passed_release_gate": true,
+  "evaluation": {
+    "profile_reason": {
+      "count": 64,
+      "correct": 64,
+      "accuracy": 1.0
+    },
+    "extract": {
+      "count": 144,
+      "correct": 144,
+      "accuracy": 1.0
+    },
+    "summary": {
+      "count": 16,
+      "correct": 16,
+      "accuracy": 1.0
+    },
+    "bank_intent": {
+      "count": 79,
+      "correct": 76,
+      "accuracy": 0.9620253164556962
+    },
+    "clarify": {
+      "count": 14,
+      "correct": 14,
+      "accuracy": 1.0
+    }
+  },
+  "gpu": "NVIDIA A40",
+  "torch": "2.9.1+cu128",
+  "initial_adapter": "artifacts/accounting-v2/adapter",
+  "learning_rate": 3e-05,
+  "full_test_passed": true,
+  "full_test_evaluation": {
+    "profile_reason": {
+      "count": 64,
+      "correct": 64,
+      "accuracy": 1.0
+    },
+    "extract": {
+      "count": 144,
+      "correct": 144,
+      "accuracy": 1.0
+    },
+    "summary": {
+      "count": 16,
+      "correct": 16,
+      "accuracy": 1.0
+    },
+    "bank_intent": {
+      "count": 79,
+      "correct": 76,
+      "accuracy": 0.9620253164556962
+    },
+    "clarify": {
+      "count": 14,
+      "correct": 14,
+      "accuracy": 1.0
+    }
+  }
+}

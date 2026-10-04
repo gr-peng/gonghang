@@ -1,0 +1,178 @@
+policy_id: mosaic-transfer
+version: 0.2.2
+description: >-
+  Minimal bank-transfer policy. Rules decide eligibility and base obligations;
+  argument provenance and learned detectors may only make the result stricter.
+default_level: deny
+
+action_contracts:
+  read_balance:
+    write_action: false
+    allow_extra_params: false
+    allowed_control_source_kinds: [user, system, trusted_service]
+    min_control_trust: user
+    fields:
+      account_id:
+        role: identifier
+        required: true
+        provenance_required: true
+        min_trust: user
+        allowed_source_kinds: [user, trusted_service]
+        on_missing: deny
+        on_violation: deny
+        causal_sensitive: true
+
+  transfer:
+    write_action: true
+    allow_extra_params: false
+    allowed_control_source_kinds: [user, system, trusted_service]
+    min_control_trust: user
+    fields:
+      from_account:
+        role: identifier
+        required: true
+        provenance_required: true
+        min_trust: user
+        allowed_source_kinds: [user, trusted_service]
+        on_missing: deny
+        on_violation: red
+        causal_sensitive: true
+      to_account:
+        role: target
+        required: true
+        provenance_required: true
+        min_trust: user
+        allowed_source_kinds: [user, trusted_service]
+        on_missing: deny
+        on_violation: red
+        causal_sensitive: true
+      amount_minor:
+        role: amount
+        required: true
+        provenance_required: true
+        min_trust: user
+        allowed_source_kinds: [user, trusted_service]
+        on_missing: deny
+        on_violation: red
+        causal_sensitive: true
+      memo:
+        role: content
+        required: false
+        provenance_required: true
+        min_trust: external
+        allowed_source_kinds: [user, rag, tool, memory, agent, trusted_service]
+        on_missing: yellow
+        on_violation: yellow
+        causal_sensitive: false
+
+rules:
+  - rule_id: balance-owner-read
+    action: read_balance
+    reason: authenticated owners may read their own active account balance
+    effect: green
+    when:
+      all:
+        - fact_equals:
+            predicate: authenticated
+            subject: $actor
+            value: true
+        - fact_contains:
+            predicate: owned_accounts
+            subject: $actor
+            item: $params.account_id
+        - fact_equals:
+            predicate: account_active
+            subject: $params.account_id
+            value: true
+
+  - rule_id: transfer-small
+    action: transfer
+    reason: valid transfer with daily cumulative amount at or below 1000 currency units requires parameter-bound confirmation
+    effect: yellow
+    when:
+      all:
+        - fact_equals:
+            predicate: authenticated
+            subject: $actor
+            value: true
+        - fact_contains:
+            predicate: owned_accounts
+            subject: $actor
+            item: $params.from_account
+        - fact_equals:
+            predicate: account_active
+            subject: $params.from_account
+            value: true
+        - fact_equals:
+            predicate: recipient_allowed
+            subject: $params.to_account
+            value: true
+        - compare:
+            left: $params.amount_minor
+            op: ">"
+            right: 0
+        - compare:
+            left: {sum_minor: [{fact: {predicate: daily_spent_minor, subject: $actor}}, $params.amount_minor]}
+            op: "<="
+            right: 100000
+        - compare:
+            left: {fact: {predicate: account_balance_minor, subject: $params.from_account}}
+            op: ">="
+            right: $params.amount_minor
+        - compare:
+            left: {fact: {predicate: daily_remaining_minor, subject: $actor}}
+            op: ">="
+            right: $params.amount_minor
+
+  - rule_id: transfer-large
+    action: transfer
+    reason: valid transfer with daily cumulative amount above 1000 currency units requires confirmation plus MFA; the separate hard limit still applies
+    effect: red
+    when:
+      all:
+        - fact_equals:
+            predicate: authenticated
+            subject: $actor
+            value: true
+        - fact_contains:
+            predicate: owned_accounts
+            subject: $actor
+            item: $params.from_account
+        - fact_equals:
+            predicate: account_active
+            subject: $params.from_account
+            value: true
+        - fact_equals:
+            predicate: recipient_allowed
+            subject: $params.to_account
+            value: true
+        - compare:
+            left: $params.amount_minor
+            op: ">"
+            right: 0
+        - compare:
+            left: {sum_minor: [{fact: {predicate: daily_spent_minor, subject: $actor}}, $params.amount_minor]}
+            op: ">"
+            right: 100000
+        - compare:
+            left: $params.amount_minor
+            op: "<="
+            right: 1000000
+        - compare:
+            left: {fact: {predicate: account_balance_minor, subject: $params.from_account}}
+            op: ">="
+            right: $params.amount_minor
+        - compare:
+            left: {fact: {predicate: daily_remaining_minor, subject: $actor}}
+            op: ">="
+            right: $params.amount_minor
+
+metadata:
+  trusted_fact_semantics: three_valued_fail_closed
+  fact_value_semantics: strict_types_and_unambiguous_latest_v2
+  conflict_resolution: risk_lattice_join
+  authorization_semantics: default_deny
+  monetary_domain: signed_64_bit_integer_minor_units
+  daily_risk_scope: actor_across_accounts_and_sessions
+  business_timezone: Asia/Shanghai
+  hard_limit_note: the 10000-unit ceiling is a prototype restriction, not a claimed contest requirement

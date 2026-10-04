@@ -1,0 +1,1993 @@
+{
+  "as_of_utc": "2026-10-04T13:49:53.421393+00:00",
+  "model": {
+    "version": "qingcai-qwen3-4b-finance-v4",
+    "evaluation": {
+      "extract": {
+        "count": 144,
+        "correct": 144,
+        "accuracy": 1.0
+      },
+      "clarify": {
+        "count": 14,
+        "correct": 14,
+        "accuracy": 1.0
+      },
+      "summary": {
+        "count": 16,
+        "correct": 16,
+        "accuracy": 1.0
+      },
+      "bank_intent": {
+        "count": 79,
+        "correct": 76,
+        "accuracy": 0.9620253164556962
+      },
+      "profile_reason": {
+        "count": 64,
+        "correct": 64,
+        "accuracy": 1.0
+      }
+    },
+    "training_source": "authored_synthetic_plus_explicitly_reviewed_structured_feedback",
+    "feedback_rows": 1,
+    "feedback_provenance": "isolated_browser_developer_fixture_not_real_user",
+    "released_at": "2026-10-03T01:33:10.552125+00:00",
+    "frozen_test_note": "synthetic regression/development holdout; banking v3 results were inspected; not a pristine generalization benchmark",
+    "evaluation_note": "Unchanged finance-v4 artifact; model evaluation is historical, no retraining in this repair."
+  },
+  "checks": {
+    "application": {
+      "passed": 104,
+      "date": "2026-10-04",
+      "source": "judge-fixes/app-tests.txt"
+    },
+    "judge_browser": {
+      "checks": [
+        "19 routes at 360/393/1280 preserve portrait glass layout, no overflow",
+        "Multi-entry clarifies without partial draft; unsupported OCR is absent",
+        "Saved bill editable in place and reflected in ledger",
+        "Filtered subtotal follows search and category; planning ledger displays actual range",
+        "Home September context produces matching real-model income, expense and balance",
+        "New goal resets explicitly; progress history supports undo without changing bank",
+        "Six-month what-if returns 1500 without changing twelve-month plan",
+        "Bad OHLC hidden; report only uses verified dates, prices and explicit limitations",
+        "Salary-only import cannot unlock long-term product or display available funding",
+        "Confirmation uses understandable account names; cancellation preserves money",
+        "Isolated fixture writes only, no bank movement, no JavaScript errors"
+      ],
+      "layouts": [
+        {
+          "route": "home",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "ledger",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "visualization",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "assistant",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "investment",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "entry",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "insights",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "import",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "holdings",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "profile",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "compare",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "research",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "dashboard",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "risk",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "stock",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "bank",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "security",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "settings",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "improvement",
+          "viewport": 360,
+          "page": 360,
+          "app": 360
+        },
+        {
+          "route": "home",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "ledger",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "visualization",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "assistant",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "investment",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "entry",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "insights",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "import",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "holdings",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "profile",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "compare",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "research",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "dashboard",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "risk",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "stock",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "bank",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "security",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "settings",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "improvement",
+          "viewport": 393,
+          "page": 393,
+          "app": 393
+        },
+        {
+          "route": "home",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "ledger",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "visualization",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "assistant",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "investment",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "entry",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "insights",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "import",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "holdings",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "profile",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "compare",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "research",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "dashboard",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "risk",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "stock",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "bank",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "security",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "settings",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        },
+        {
+          "route": "improvement",
+          "viewport": 1280,
+          "page": 1280,
+          "app": 430
+        }
+      ],
+      "javascript_errors": [],
+      "real_model_used": true
+    },
+    "bank_browser": {
+      "checks": [
+        "现金流、生活阶段、风险偏好与目标计划相连，保存后投资页使用相同数据",
+        "图表与个人计划使用同一目标，旧周期/比例/记录迁移后保留，进度不伪造银行资产",
+        "双层代理传递会话和 CSRF，核对完整参数后真实模拟划转；刷新不重复扣款",
+        "模拟申购和赎回实际划转本金，现金/持仓/总资产一致，未计成收入或消费",
+        "真实模型读取画像与账单汇总组织可信依据，下一步按钮进入对应比较页面",
+        "真实微调模型→可编辑草稿→参数确认→模拟执行，重复打开同一聊天草稿不再扣款",
+        "默认关闭→同意→改正模型草稿→脱敏候选→显式审核→真实训练出口，未包含原文或精确金额",
+        "累计大额阻止直接提交，二维码注册/动态码验证/保护回执实际生效",
+        "19 个页面在 360/393/1280 宽度可用，无页面溢出或 JavaScript 错误",
+        "CSV 预览与分类修正明确确认后才入账；再次导入去重，个人报表隔离合成收入和内部划转",
+        "隐藏金额覆盖新页面，参数隐藏时不能确认，取消不产生资金变动"
+      ],
+      "javascript_errors": [],
+      "isolated_ledger_count": 1158,
+      "bank_mode": "durable_mock_only",
+      "production_bank_unchanged": true,
+      "mfa_secret_logged": false,
+      "real_model_used": true
+    },
+    "deployment": {
+      "checks": [
+        "Authenticated server entry serves current portrait UI, capabilities and validated research on ten routes",
+        "Production research excludes 1504 invalid rows and retains 1001 valid historical rows",
+        "Existing fine-tuned model loaded and all four services healthy",
+        "Chart year context retained by assistant request (isolated transport test)",
+        "Bill row hash, existing profile fields, 50000 CNY simulation cash and zero holdings/operations unchanged",
+        "Goal progress history retains the planning shortcut without overflow at 360px (read-only UI fixture)"
+      ],
+      "javascript_errors": [],
+      "production_api_writes": [],
+      "quote_quality": {
+        "total": 2505,
+        "excluded": 1504,
+        "valid": 1001
+      },
+      "model": "qingcai-qwen3-4b-finance-v4",
+      "bills": 1155,
+      "frontend_sha256": {
+        "visuals.js": "282c440ca3c25365e07a2b078982d3f0bfb51e9fb4a2c394fd5ce8d72c0c408d",
+        "research.js": "2fecdfdd4f96aeecabd12b56c253567e9e4dd02e215e913be7088021e5b5bf0c",
+        "index.html": "534cab8e50e04889adab8396e82a10824a664a12a83a68ac3875a97783bddf85",
+        "features.js": "572fcc04376afb181b1c0b021ab9c98bdf0c1515eeaba37744cdbbbb0831f94e",
+        "api.js": "8cd1541844fc4a255c0ac425e852bfd866cb0fb42470e1e555f7497582270d07",
+        "analytics.css": "02419ff8e22c6544729a39445d523a0d5eb076d514f452bf61e1f7d0e9f0cf6f",
+        "navigation.js": "dc5945295d45efa153571a69ce8baa96b6e8bf6a137a3e10469e61147753c308",
+        "improvement.js": "973f56e1de807ed614d0dc2418b4b6aaebf30bddd5e24ab88d3358b8b97c9c20",
+        "goals.js": "f461d7ecb788c9b945f58299691a79a02a65f42ae07d9148cb5bb4969e25dcd1",
+        "app.js": "9640a44b91e7035a7bd1c946c25b68926147a1b7dfd8aa8ffbe010b7ceea4933",
+        "app.css": "5058cd6197cf8b2197c486f77d359ef00aef79b983f7d5d333217155052f4d36",
+        "advice-check.js": "4fc42992d7701490fcec779d22b42cfa7162a1c5ca631d38d3890415876587eb",
+        "investment.css": "0b5d251212979c0200400d5bf41087ed90b5af24bbd13a369b552c4b4538dd42",
+        "glass.css": "cbd070097bdeba3abb05aebad4e3116c073ae8a466cab533a17f644a31f6af2c",
+        "journey.js": "346c625c16030cff938ca90c54e7a72020252d1929e6f9eb77e324b1c47231aa",
+        "investment.js": "cc5dad65d58adf73a46becbe851ba42b12c13f453ff015bcab29cb57077e1860",
+        "investment-shell.js": "035fbd5278e59ae8a3b34f12228018c9f849432c17a86e3afb1bcb78127365a0",
+        "tokens.css": "38b1aa83daea0d5a06e4a10f29538b4502ee4d5d79802ad1441d9770940d375d",
+        "templates.js": "12270052d055f1616bc698b01cf29d0e7d9e9c3a43d02edcf0d0540cdfd4472a",
+        "journey.css": "e50ad5061b586ce6ad3b8f8ac1cda051a064cdc9db05ded7df3919d0b88edc17",
+        "finance-api.js": "b371038cd025090a31892eb8463ca45fabc8b7b095ed30daf2c2d16d2ba3806c",
+        "features.css": "92e64a457ed95281b12359db745916ba3c41b7968cb43641510d7940c7861356",
+        "statements.js": "e0d243a56a84ef48e942d34336235a50005e92365c0bd92e33900b60d8c015c1",
+        "DESIGN.md": "d4f6c5cff07896692414907e9da4ba77468d28b0d6db1affa32b51ae68e291fb"
+      },
+      "production_data_unchanged": true
+    },
+    "historical_evidence": {
+      "application": {
+        "passed": 76,
+        "source": "app-tests.txt"
+      },
+      "release": {
+        "passed": 5,
+        "source": "model-release-tests.txt"
+      },
+      "browser": {
+        "checks": [
+          "现金流、生活阶段、风险偏好与目标计划相连，保存后理财页使用相同数据",
+          "图表与个人计划使用同一目标，旧周期/比例/记录迁移后保留，进度不伪造银行资产",
+          "双层代理传递会话和 CSRF，核对完整参数后真实模拟划转；刷新不重复扣款",
+          "模拟申购和赎回实际划转本金，现金/持仓/总资产一致，未计成收入或消费",
+          "真实模型读取画像与账单汇总组织可信依据，下一步按钮进入对应比较页面",
+          "真实微调模型→可编辑草稿→参数确认→模拟执行，重复打开同一聊天草稿不再扣款",
+          "默认关闭→同意→改正模型草稿→脱敏候选→显式审核→真实训练出口，未包含原文或精确金额",
+          "累计大额阻止直接提交，二维码注册/动态码验证/保护回执实际生效",
+          "18 个页面在 360/393/1280 宽度可用，无页面溢出或 JavaScript 错误",
+          "CSV 预览与分类修正明确确认后才入账；再次导入去重，个人报表隔离合成收入和内部划转",
+          "隐藏金额覆盖新页面，参数隐藏时不能确认，取消不产生资金变动"
+        ],
+        "javascript_errors": [],
+        "real_model_used": true
+      },
+      "security_package": {
+        "passed": 277,
+        "skipped": 4,
+        "skip_reason": "optional Docker integration not enabled",
+        "scope": "unchanged vendor reproduction; no real LLM calls in this run"
+      },
+      "service_recovery": {
+        "observed": true,
+        "trigger": "owned_frontend_child_exit",
+        "launcher_changed": true,
+        "model": "qingcai-qwen3-4b-finance-v4",
+        "recovery_seconds": 14.45,
+        "scope": "one controlled service failure; server was not rebooted"
+      },
+      "model_rollback": {
+        "rollback_loaded": true,
+        "rollback_version": "qingcai-qwen3-4b-accounting-v2",
+        "restored_version": "qingcai-qwen3-4b-finance-v4"
+      },
+      "source_startup": {
+        "passed": true,
+        "startup": "extracted_source_basic_demo_no_model",
+        "seeded_count": 6,
+        "salary_category": "工资",
+        "llm_configured": false,
+        "simulated_bank_readable": true
+      },
+      "source_integrity": {
+        "verified_files": 620,
+        "private_ledger_or_keys": false,
+        "adapter_identical": true,
+        "portable_release_gate": true
+      },
+      "analytics_browser": {
+        "checks": [
+          "5 种宽度下图表、投资图表与风险页均和首页同宽，上限 430px；主要卡片保持竖版单列",
+          "15 个分析页面/视口组合无横溢；手机趋势日期轴完整可见，图形在窄卡片内正常铺开",
+          "折线/柱状保留逐日数据、键盘读数可用，周/月/年金额与实际接口一致",
+          "分类前五项与展开全部均可读，对比切换正常，金额隐藏同时移除图形",
+          "自定义日期拒绝倒序，空区间完整空状态，金额与所选区间一致",
+          "分类钻取只显示对应账本，左上返回保留日期、金额和原滚动位置",
+          "详细分析继承图表自定义区间，导航归属图表且可返回",
+          "投资图表的历史持仓进入历史投研，返回与理财导航归属正确",
+          "全部浏览操作零非 GET API 请求、零脚本错误，账单数量保持不变"
+        ],
+        "layouts": [
+          {
+            "route": "visualization",
+            "width": 393,
+            "pageWidth": 393,
+            "height": 1803,
+            "shell": {
+              "width": 393,
+              "left": 0,
+              "right": 393,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card analytics-balance",
+                "top": 204,
+                "bottom": 431.421875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card analytics-trend",
+                "top": 447.421875,
+                "bottom": 780.53125,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card analytics-breakdown",
+                "top": 796.53125,
+                "bottom": 1404.53125,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card analytics-goal",
+                "top": 1420.53125,
+                "bottom": 1574.53125,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              }
+            ],
+            "overflowing": [],
+            "plot": {
+              "svgWidth": 307,
+              "gridWidth": 257.5364990234375,
+              "gridRatio": 0.8388811043108714,
+              "dateBottom": 746.7396850585938,
+              "navTop": 776
+            }
+          },
+          {
+            "route": "dashboard",
+            "width": 393,
+            "pageWidth": 393,
+            "height": 3233,
+            "shell": {
+              "width": 393,
+              "left": 0,
+              "right": 393,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card research-summary",
+                "top": 80,
+                "bottom": 299.1875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 315.1875,
+                "bottom": 836.6875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 852.6875,
+                "bottom": 1427.1875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card benchmark-card",
+                "top": 1443.1875,
+                "bottom": 1775.5625,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card comparison-card",
+                "top": 1791.5625,
+                "bottom": 2430.671875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card holdings-table",
+                "top": 2446.671875,
+                "bottom": 3132.671875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "width": 393,
+            "pageWidth": 393,
+            "height": 1347,
+            "shell": {
+              "width": 393,
+              "left": 0,
+              "right": 393,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card ",
+                "top": 80,
+                "bottom": 713.5,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              },
+              {
+                "className": "surface-card ",
+                "top": 729.5,
+                "bottom": 1115.1875,
+                "left": 20,
+                "right": 373,
+                "width": 353
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "width": 360,
+            "pageWidth": 360,
+            "height": 1761,
+            "shell": {
+              "width": 360,
+              "left": 0,
+              "right": 360,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card analytics-balance",
+                "top": 204,
+                "bottom": 416.21875,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card analytics-trend",
+                "top": 432.21875,
+                "bottom": 746.984375,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card analytics-breakdown",
+                "top": 762.984375,
+                "bottom": 1366.984375,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card analytics-goal",
+                "top": 1382.984375,
+                "bottom": 1532.984375,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              }
+            ],
+            "overflowing": [],
+            "plot": {
+              "svgWidth": 286,
+              "gridWidth": 239.90554809570312,
+              "gridRatio": 0.8388305877472138,
+              "dateBottom": 716.0685424804688,
+              "navTop": 724
+            }
+          },
+          {
+            "route": "dashboard",
+            "width": 360,
+            "pageWidth": 360,
+            "height": 3179,
+            "shell": {
+              "width": 360,
+              "left": 0,
+              "right": 360,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card research-summary",
+                "top": 80,
+                "bottom": 288.5,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 304.5,
+                "bottom": 822,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 838,
+                "bottom": 1408.5,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card benchmark-card",
+                "top": 1424.5,
+                "bottom": 1742.46875,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card comparison-card",
+                "top": 1758.46875,
+                "bottom": 2380.734375,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card holdings-table",
+                "top": 2396.734375,
+                "bottom": 3078.734375,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "width": 360,
+            "pageWidth": 360,
+            "height": 1330,
+            "shell": {
+              "width": 360,
+              "left": 0,
+              "right": 360,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card ",
+                "top": 80,
+                "bottom": 707.5,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              },
+              {
+                "className": "surface-card ",
+                "top": 723.5,
+                "bottom": 1098,
+                "left": 16,
+                "right": 344,
+                "width": 328
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "width": 768,
+            "pageWidth": 768,
+            "height": 1827,
+            "shell": {
+              "width": 430,
+              "left": 169,
+              "right": 599,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card analytics-balance",
+                "top": 204,
+                "bottom": 433.296875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-trend",
+                "top": 449.296875,
+                "bottom": 805.015625,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-breakdown",
+                "top": 821.015625,
+                "bottom": 1429.015625,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-goal",
+                "top": 1445.015625,
+                "bottom": 1599.015625,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              }
+            ],
+            "overflowing": [],
+            "plot": {
+              "svgWidth": 344,
+              "gridWidth": 288.5730285644531,
+              "gridRatio": 0.838875083036201,
+              "dateBottom": 769.6825561523438,
+              "navTop": 824
+            }
+          },
+          {
+            "route": "dashboard",
+            "width": 768,
+            "pageWidth": 768,
+            "height": 3222,
+            "shell": {
+              "width": 430,
+              "left": 169,
+              "right": 599,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card research-summary",
+                "top": 80,
+                "bottom": 299.1875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 315.1875,
+                "bottom": 836.6875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 852.6875,
+                "bottom": 1427.1875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card benchmark-card",
+                "top": 1443.1875,
+                "bottom": 1793.921875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card comparison-card",
+                "top": 1809.921875,
+                "bottom": 2419.640625,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card holdings-table",
+                "top": 2435.640625,
+                "bottom": 3121.640625,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "width": 768,
+            "pageWidth": 768,
+            "height": 1347,
+            "shell": {
+              "width": 430,
+              "left": 169,
+              "right": 599,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card ",
+                "top": 80,
+                "bottom": 713.5,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              },
+              {
+                "className": "surface-card ",
+                "top": 729.5,
+                "bottom": 1115.1875,
+                "left": 189,
+                "right": 579,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "width": 1280,
+            "pageWidth": 1280,
+            "height": 1827,
+            "shell": {
+              "width": 430,
+              "left": 425,
+              "right": 855,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card analytics-balance",
+                "top": 204,
+                "bottom": 433.296875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-trend",
+                "top": 449.296875,
+                "bottom": 805.015625,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-breakdown",
+                "top": 821.015625,
+                "bottom": 1429.015625,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-goal",
+                "top": 1445.015625,
+                "bottom": 1599.015625,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              }
+            ],
+            "overflowing": [],
+            "plot": {
+              "svgWidth": 344,
+              "gridWidth": 288.572998046875,
+              "gridRatio": 0.838874994322311,
+              "dateBottom": 769.6825561523438,
+              "navTop": 824
+            }
+          },
+          {
+            "route": "dashboard",
+            "width": 1280,
+            "pageWidth": 1280,
+            "height": 3222,
+            "shell": {
+              "width": 430,
+              "left": 425,
+              "right": 855,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card research-summary",
+                "top": 80,
+                "bottom": 299.1875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 315.1875,
+                "bottom": 836.6875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 852.6875,
+                "bottom": 1427.1875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card benchmark-card",
+                "top": 1443.1875,
+                "bottom": 1793.921875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card comparison-card",
+                "top": 1809.921875,
+                "bottom": 2419.640625,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card holdings-table",
+                "top": 2435.640625,
+                "bottom": 3121.640625,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "width": 1280,
+            "pageWidth": 1280,
+            "height": 1347,
+            "shell": {
+              "width": 430,
+              "left": 425,
+              "right": 855,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card ",
+                "top": 80,
+                "bottom": 713.5,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              },
+              {
+                "className": "surface-card ",
+                "top": 729.5,
+                "bottom": 1115.1875,
+                "left": 445,
+                "right": 835,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "width": 1920,
+            "pageWidth": 1920,
+            "height": 1827,
+            "shell": {
+              "width": 430,
+              "left": 745,
+              "right": 1175,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card analytics-balance",
+                "top": 204,
+                "bottom": 433.296875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-trend",
+                "top": 449.296875,
+                "bottom": 805.015625,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-breakdown",
+                "top": 821.015625,
+                "bottom": 1429.015625,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card analytics-goal",
+                "top": 1445.015625,
+                "bottom": 1599.015625,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              }
+            ],
+            "overflowing": [],
+            "plot": {
+              "svgWidth": 344,
+              "gridWidth": 288.572998046875,
+              "gridRatio": 0.838874994322311,
+              "dateBottom": 769.6825561523438,
+              "navTop": 1004
+            }
+          },
+          {
+            "route": "dashboard",
+            "width": 1920,
+            "pageWidth": 1920,
+            "height": 3222,
+            "shell": {
+              "width": 430,
+              "left": 745,
+              "right": 1175,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card research-summary",
+                "top": 80,
+                "bottom": 299.1875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 315.1875,
+                "bottom": 836.6875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card allocation-card",
+                "top": 852.6875,
+                "bottom": 1427.1875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card benchmark-card",
+                "top": 1443.1875,
+                "bottom": 1793.921875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card comparison-card",
+                "top": 1809.921875,
+                "bottom": 2419.640625,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card holdings-table",
+                "top": 2435.640625,
+                "bottom": 3121.640625,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "width": 1920,
+            "pageWidth": 1920,
+            "height": 1347,
+            "shell": {
+              "width": 430,
+              "left": 745,
+              "right": 1175,
+              "maxWidth": "430px"
+            },
+            "cards": [
+              {
+                "className": "surface-card ",
+                "top": 80,
+                "bottom": 713.5,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              },
+              {
+                "className": "surface-card ",
+                "top": 729.5,
+                "bottom": 1115.1875,
+                "left": 765,
+                "right": 1155,
+                "width": 390
+              }
+            ],
+            "overflowing": []
+          }
+        ],
+        "errors": [],
+        "non_get_api_requests": [],
+        "frontend_sha256": {
+          "advice-check.js": "4fc42992d7701490fcec779d22b42cfa7162a1c5ca631d38d3890415876587eb",
+          "analytics.css": "02419ff8e22c6544729a39445d523a0d5eb076d514f452bf61e1f7d0e9f0cf6f",
+          "api.js": "8cd1541844fc4a255c0ac425e852bfd866cb0fb42470e1e555f7497582270d07",
+          "app.css": "5058cd6197cf8b2197c486f77d359ef00aef79b983f7d5d333217155052f4d36",
+          "app.js": "b01f899090bf369b5f576cb80704e3b22311842bf554f9fc52402e793b052b56",
+          "features.css": "92e64a457ed95281b12359db745916ba3c41b7968cb43641510d7940c7861356",
+          "features.js": "572fcc04376afb181b1c0b021ab9c98bdf0c1515eeaba37744cdbbbb0831f94e",
+          "finance-api.js": "b371038cd025090a31892eb8463ca45fabc8b7b095ed30daf2c2d16d2ba3806c",
+          "goals.js": "f8540e8e00f8a1e92cafa92a4032548a39e093cfcbe869a45304859750bcb8d5",
+          "improvement.js": "973f56e1de807ed614d0dc2418b4b6aaebf30bddd5e24ab88d3358b8b97c9c20",
+          "index.html": "240510f73b28ea9313907bc9466997554990d0e1fe7169354cf670a48f86e75a",
+          "journey.css": "e50ad5061b586ce6ad3b8f8ac1cda051a064cdc9db05ded7df3919d0b88edc17",
+          "journey.js": "974cbc3648994262952e85475a7142194b3dec0f5c0bcea26f00fee38e60c904",
+          "navigation.js": "f97f24d4b258d1916c118caa6ec51e7d14366d0d0144c994c72bc6f6d3abee27",
+          "statements.js": "58f0007d152a0a61961c2786978b45b14d8eb1a1c2067ebce6533feb11acf849",
+          "templates.js": "12270052d055f1616bc698b01cf29d0e7d9e9c3a43d02edcf0d0540cdfd4472a",
+          "tokens.css": "ad12ece1fb1a9c69cbf26aafa3f8532ffffca84cf44b1a4eb1021e16847c7403",
+          "visuals.js": "282c440ca3c25365e07a2b078982d3f0bfb51e9fb4a2c394fd5ce8d72c0c408d"
+        }
+      },
+      "navigation_browser": {
+        "checks": [
+          "图表分类→账本→设置→原入口；浏览器前进后退同步",
+          "记账草稿往返保留，无账单保存",
+          "我的计划未提交表单和嵌套设置返回来源均保留",
+          "助手从原入口返回，聊天草稿保留",
+          "历史投研子页面返回及刷新后来源保留",
+          "导入流水正确归属账本，账户别名草稿保留",
+          "延迟GET期间日期输入保留，应用后详细分析与返回均沿用正确区间",
+          "丢弃草稿后金额和描述确实清空",
+          "隔离模拟解析结果替换旧表单，不被离页同步覆盖",
+          "隔离模拟保存后新账单保持空白，未向服务器写入账单"
+        ],
+        "javascript_errors": [],
+        "api_writes": [],
+        "mocked_entry_requests": [
+          "parse",
+          "save"
+        ]
+      },
+      "investment_browser": {
+        "checks": [
+          "投资三分段与底部投资导航一致；360/393/1280 均保留 430px 竖版上限",
+          "规划首卡随月份与账本收支完全一致；历史月均规划与当月净额分别展示",
+          "当月账单、收支图表及历史规划依据可追溯，返回后所选月份保持一致",
+          "自选研究、历史组合与模拟持仓各自独立，历史资产未混入模拟账户",
+          "历史持仓详情显示对应证券与快照，方案比较/计划编辑均能返回实际来源",
+          "金额隐藏跨规划与模拟持仓生效，恢复后数据仍与同月账本一致",
+          "同一账本保存阶段后保留所选 8 月，返回投资的净额仍与 8 月账本一致；保存仅本地 mock",
+          "已完成目标每月预留归零，规划不混入独立模拟现金或历史资产",
+          "缺少完整月历史时不生成可用金额，补账入口与返回可用",
+          "负结余与目标缺口显示为待调整资金安排，不被模拟余额掩盖",
+          "模拟余额不足时禁用申购，已有持仓仍能进入赎回核对，未提交资金操作",
+          "余额不足复核错误在原表单展示；该 POST 完全由浏览器 mock 响应、未发送到银行",
+          "真实账本、模拟银行余额和操作数量不变；无生产写请求及脚本错误"
+        ],
+        "layouts": [
+          {
+            "route": "investment",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "research",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "holdings",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "investment",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "research",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "holdings",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "investment",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "research",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px"
+          },
+          {
+            "route": "holdings",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px"
+          }
+        ],
+        "javascript_errors": [],
+        "blocked_production_writes": [],
+        "scenarios": [
+          {
+            "name": "save_profile_preserves_non_latest_month",
+            "source": "isolated_overview_and_profile_fixture",
+            "passed": true
+          },
+          {
+            "name": "completed_goal",
+            "source": "isolated_overview_fixture",
+            "passed": true
+          },
+          {
+            "name": "missing_complete_history",
+            "source": "isolated_overview_fixture",
+            "passed": true
+          },
+          {
+            "name": "negative_historical_net",
+            "source": "isolated_overview_fixture",
+            "passed": true
+          },
+          {
+            "name": "goal_shortfall",
+            "source": "isolated_overview_fixture",
+            "passed": true
+          },
+          {
+            "name": "zero_cash_with_existing_holding",
+            "source": "isolated_overview_fixture",
+            "passed": true
+          },
+          {
+            "name": "insufficient_balance_review",
+            "source": "isolated_overview_and_review_fixture",
+            "passed": true
+          }
+        ],
+        "frontend_sha256": {
+          "advice-check.js": "4fc42992d7701490fcec779d22b42cfa7162a1c5ca631d38d3890415876587eb",
+          "analytics.css": "02419ff8e22c6544729a39445d523a0d5eb076d514f452bf61e1f7d0e9f0cf6f",
+          "api.js": "8cd1541844fc4a255c0ac425e852bfd866cb0fb42470e1e555f7497582270d07",
+          "app.css": "5058cd6197cf8b2197c486f77d359ef00aef79b983f7d5d333217155052f4d36",
+          "app.js": "a3244c987a07557090d65659a625829ace89fe7caa9655aa1e4392af993a973f",
+          "features.css": "92e64a457ed95281b12359db745916ba3c41b7968cb43641510d7940c7861356",
+          "features.js": "572fcc04376afb181b1c0b021ab9c98bdf0c1515eeaba37744cdbbbb0831f94e",
+          "finance-api.js": "b371038cd025090a31892eb8463ca45fabc8b7b095ed30daf2c2d16d2ba3806c",
+          "goals.js": "f8540e8e00f8a1e92cafa92a4032548a39e093cfcbe869a45304859750bcb8d5",
+          "improvement.js": "973f56e1de807ed614d0dc2418b4b6aaebf30bddd5e24ab88d3358b8b97c9c20",
+          "index.html": "6ebbc6ec0af901deb805c1aa3588dbd3f66e9eef807b0e933ceb24e2d4981a92",
+          "investment-shell.js": "035fbd5278e59ae8a3b34f12228018c9f849432c17a86e3afb1bcb78127365a0",
+          "investment.css": "0b5d251212979c0200400d5bf41087ed90b5af24bbd13a369b552c4b4538dd42",
+          "investment.js": "c4a52fec8d9a5d023cd722e58d7ddab7e84ff3b66433c8c3a7969548538d0c5d",
+          "journey.css": "e50ad5061b586ce6ad3b8f8ac1cda051a064cdc9db05ded7df3919d0b88edc17",
+          "journey.js": "1923a232f59ed9131fb844f562c452bab9d7b0d9ca3f270444799050d1f358e6",
+          "navigation.js": "dc5945295d45efa153571a69ce8baa96b6e8bf6a137a3e10469e61147753c308",
+          "research.js": "64f0c94f53d892fd86ca2c29c686bd94d9201a4d64c76299e27c301c3145cf32",
+          "statements.js": "e0d243a56a84ef48e942d34336235a50005e92365c0bd92e33900b60d8c015c1",
+          "templates.js": "12270052d055f1616bc698b01cf29d0e7d9e9c3a43d02edcf0d0540cdfd4472a",
+          "tokens.css": "ad12ece1fb1a9c69cbf26aafa3f8532ffffca84cf44b1a4eb1021e16847c7403",
+          "visuals.js": "282c440ca3c25365e07a2b078982d3f0bfb51e9fb4a2c394fd5ce8d72c0c408d"
+        }
+      },
+      "finance_planning": {
+        "passed": 54,
+        "scope": "isolated ledger planning, assistant facts and existing bank safety regressions"
+      },
+      "investment_isolated_browser": {
+        "checks": [
+          "现金流、生活阶段、风险偏好与目标计划相连，保存后投资页使用相同数据",
+          "图表与个人计划使用同一目标，旧周期/比例/记录迁移后保留，进度不伪造银行资产",
+          "双层代理传递会话和 CSRF，核对完整参数后真实模拟划转；刷新不重复扣款",
+          "模拟申购和赎回实际划转本金，现金/持仓/总资产一致，未计成收入或消费",
+          "真实模型读取画像与账单汇总组织可信依据，下一步按钮进入对应比较页面",
+          "真实微调模型→可编辑草稿→参数确认→模拟执行，重复打开同一聊天草稿不再扣款",
+          "默认关闭→同意→改正模型草稿→脱敏候选→显式审核→真实训练出口，未包含原文或精确金额",
+          "累计大额阻止直接提交，二维码注册/动态码验证/保护回执实际生效",
+          "18 个页面在 360/393/1280 宽度可用，无页面溢出或 JavaScript 错误",
+          "CSV 预览与分类修正明确确认后才入账；再次导入去重，个人报表隔离合成收入和内部划转",
+          "隐藏金额覆盖新页面，参数隐藏时不能确认，取消不产生资金变动"
+        ],
+        "javascript_errors": [],
+        "isolated_ledger_count": 1158,
+        "bank_mode": "durable_mock_only",
+        "production_bank_unchanged": true,
+        "mfa_secret_logged": false,
+        "real_model_used": true
+      },
+      "glass_browser": {
+        "checks": [
+          "19 个页面在 393px 视口保持 430px 竖版上限，居中且无横向溢出",
+          "19 个页面在 1280px 视口保持 430px 竖版上限，居中且无横向溢出",
+          "6 个页面在 360px 视口保持 430px 竖版上限，居中且无横向溢出",
+          "19 页顶部栏、主导航及选中态使用完全相同玻璃材质；模糊强度不超过 12px",
+          "投资、助手、记账和图表等全部分段导航，容器与选中按钮材质一致",
+          "底部 5 个入口、投资分段和页面返回均正常响应",
+          "三个助手模式的玻璃快捷输入弹窗均可打开、选模板并回填输入框，没有发送消息",
+          "账单筛选、文字输入弹窗和按钮键盘焦点可用；不提交账单或解析请求",
+          "减少透明度覆盖导航、分段、所有按钮与输入条；关闭后恢复玻璃，减少动画开关仍有效",
+          "无 JavaScript 错误、无生产写请求、无 LLM 调用；账单/规划/模拟余额/持仓/操作记录未变"
+        ],
+        "layouts": [
+          {
+            "route": "home",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "ledger",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "assistant",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "investment",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "entry",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "insights",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "import",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "holdings",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "profile",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "compare",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "research",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "dashboard",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "stock",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "bank",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "security",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "settings",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "improvement",
+            "viewport": 393,
+            "shellWidth": 393,
+            "left": 0,
+            "scrollWidth": 393,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "home",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "ledger",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "assistant",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "investment",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "entry",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "insights",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "import",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "holdings",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "profile",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "compare",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "research",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "dashboard",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "risk",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "stock",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "bank",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "security",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "settings",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "improvement",
+            "viewport": 1280,
+            "shellWidth": 430,
+            "left": 425,
+            "scrollWidth": 1280,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "home",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "investment",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "visualization",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "assistant",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "profile",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          },
+          {
+            "route": "research",
+            "viewport": 360,
+            "shellWidth": 360,
+            "left": 0,
+            "scrollWidth": 360,
+            "maxWidth": "430px",
+            "overflowing": []
+          }
+        ],
+        "javascript_errors": [],
+        "blocked_writes": [],
+        "finished_at": "2026-10-03T14:13:34.912356+00:00",
+        "frontend_sha256": {
+          "advice-check.js": "4fc42992d7701490fcec779d22b42cfa7162a1c5ca631d38d3890415876587eb",
+          "analytics.css": "02419ff8e22c6544729a39445d523a0d5eb076d514f452bf61e1f7d0e9f0cf6f",
+          "api.js": "8cd1541844fc4a255c0ac425e852bfd866cb0fb42470e1e555f7497582270d07",
+          "app.css": "5058cd6197cf8b2197c486f77d359ef00aef79b983f7d5d333217155052f4d36",
+          "app.js": "a3244c987a07557090d65659a625829ace89fe7caa9655aa1e4392af993a973f",
+          "features.css": "92e64a457ed95281b12359db745916ba3c41b7968cb43641510d7940c7861356",
+          "features.js": "572fcc04376afb181b1c0b021ab9c98bdf0c1515eeaba37744cdbbbb0831f94e",
+          "finance-api.js": "b371038cd025090a31892eb8463ca45fabc8b7b095ed30daf2c2d16d2ba3806c",
+          "glass.css": "88f20dc3cccb6d5c6533cf37d71cc9df97bcd63a095296202865e870618149f3",
+          "goals.js": "f8540e8e00f8a1e92cafa92a4032548a39e093cfcbe869a45304859750bcb8d5",
+          "improvement.js": "973f56e1de807ed614d0dc2418b4b6aaebf30bddd5e24ab88d3358b8b97c9c20",
+          "index.html": "534cab8e50e04889adab8396e82a10824a664a12a83a68ac3875a97783bddf85",
+          "investment-shell.js": "035fbd5278e59ae8a3b34f12228018c9f849432c17a86e3afb1bcb78127365a0",
+          "investment.css": "0b5d251212979c0200400d5bf41087ed90b5af24bbd13a369b552c4b4538dd42",
+          "investment.js": "c4a52fec8d9a5d023cd722e58d7ddab7e84ff3b66433c8c3a7969548538d0c5d",
+          "journey.css": "e50ad5061b586ce6ad3b8f8ac1cda051a064cdc9db05ded7df3919d0b88edc17",
+          "journey.js": "1923a232f59ed9131fb844f562c452bab9d7b0d9ca3f270444799050d1f358e6",
+          "navigation.js": "dc5945295d45efa153571a69ce8baa96b6e8bf6a137a3e10469e61147753c308",
+          "research.js": "64f0c94f53d892fd86ca2c29c686bd94d9201a4d64c76299e27c301c3145cf32",
+          "statements.js": "e0d243a56a84ef48e942d34336235a50005e92365c0bd92e33900b60d8c015c1",
+          "templates.js": "12270052d055f1616bc698b01cf29d0e7d9e9c3a43d02edcf0d0540cdfd4472a",
+          "tokens.css": "38b1aa83daea0d5a06e4a10f29538b4502ee4d5d79802ad1441d9770940d375d",
+          "visuals.js": "282c440ca3c25365e07a2b078982d3f0bfb51e9fb4a2c394fd5ce8d72c0c408d"
+        }
+      }
+    },
+    "frontend_sha256": {
+      "visuals.js": "282c440ca3c25365e07a2b078982d3f0bfb51e9fb4a2c394fd5ce8d72c0c408d",
+      "research.js": "2fecdfdd4f96aeecabd12b56c253567e9e4dd02e215e913be7088021e5b5bf0c",
+      "index.html": "534cab8e50e04889adab8396e82a10824a664a12a83a68ac3875a97783bddf85",
+      "features.js": "572fcc04376afb181b1c0b021ab9c98bdf0c1515eeaba37744cdbbbb0831f94e",
+      "api.js": "8cd1541844fc4a255c0ac425e852bfd866cb0fb42470e1e555f7497582270d07",
+      "analytics.css": "02419ff8e22c6544729a39445d523a0d5eb076d514f452bf61e1f7d0e9f0cf6f",
+      "navigation.js": "dc5945295d45efa153571a69ce8baa96b6e8bf6a137a3e10469e61147753c308",
+      "improvement.js": "973f56e1de807ed614d0dc2418b4b6aaebf30bddd5e24ab88d3358b8b97c9c20",
+      "goals.js": "f461d7ecb788c9b945f58299691a79a02a65f42ae07d9148cb5bb4969e25dcd1",
+      "app.js": "9640a44b91e7035a7bd1c946c25b68926147a1b7dfd8aa8ffbe010b7ceea4933",
+      "app.css": "5058cd6197cf8b2197c486f77d359ef00aef79b983f7d5d333217155052f4d36",
+      "advice-check.js": "4fc42992d7701490fcec779d22b42cfa7162a1c5ca631d38d3890415876587eb",
+      "investment.css": "0b5d251212979c0200400d5bf41087ed90b5af24bbd13a369b552c4b4538dd42",
+      "glass.css": "cbd070097bdeba3abb05aebad4e3116c073ae8a466cab533a17f644a31f6af2c",
+      "journey.js": "346c625c16030cff938ca90c54e7a72020252d1929e6f9eb77e324b1c47231aa",
+      "investment.js": "cc5dad65d58adf73a46becbe851ba42b12c13f453ff015bcab29cb57077e1860",
+      "investment-shell.js": "035fbd5278e59ae8a3b34f12228018c9f849432c17a86e3afb1bcb78127365a0",
+      "tokens.css": "38b1aa83daea0d5a06e4a10f29538b4502ee4d5d79802ad1441d9770940d375d",
+      "templates.js": "12270052d055f1616bc698b01cf29d0e7d9e9c3a43d02edcf0d0540cdfd4472a",
+      "journey.css": "e50ad5061b586ce6ad3b8f8ac1cda051a064cdc9db05ded7df3919d0b88edc17",
+      "finance-api.js": "b371038cd025090a31892eb8463ca45fabc8b7b095ed30daf2c2d16d2ba3806c",
+      "features.css": "92e64a457ed95281b12359db745916ba3c41b7968cb43641510d7940c7861356",
+      "statements.js": "e0d243a56a84ef48e942d34336235a50005e92365c0bd92e33900b60d8c015c1",
+      "DESIGN.md": "d4f6c5cff07896692414907e9da4ba77468d28b0d6db1affa32b51ae68e291fb"
+    }
+  },
+  "bank": "persistent simulated principal only",
+  "real_user_feedback": 0,
+  "data_scope": "authored synthetic records; isolated developer feedback fixture",
+  "rejected_candidate": {
+    "version": "finance-v3",
+    "bank_correct": 77,
+    "bank_count": 79,
+    "accounting_correct": 143,
+    "accounting_count": 144,
+    "deployed": false
+  },
+  "boundaries": [
+    "single owner private prototype",
+    "no real bank or real market order execution",
+    "no production login/TLS or formal suitability assessment",
+    "no real user research or return claims"
+  ]
+}

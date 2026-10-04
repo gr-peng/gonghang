@@ -1,0 +1,15 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "maxLength": 32768,
+      "title": "Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code"
+  ],
+  "title": "CodeRequest",
+  "type": "object"
+}

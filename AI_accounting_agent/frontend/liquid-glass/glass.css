@@ -1,0 +1,149 @@
+/* Shared material layer. Page styles own layout; this file owns glass surfaces. */
+body {
+  background:
+    radial-gradient(ellipse at 85% 8%,rgba(190,210,238,.38),transparent 48%),
+    radial-gradient(ellipse at 8% 65%,rgba(204,224,221,.24),transparent 52%),
+    var(--bg);
+  background-attachment:fixed;
+}
+.app-shell { background:transparent; }
+
+/* The same shell material on every route, including controls inside charts. */
+:is(.glass,.topbar,.segmented,.surface-card,.composer),
+.analytics-workspace .surface-card,
+.analytics-controls .segmented,
+.analytics-workspace .chart-toolbar .segmented,
+.analytics-card-heading .segmented {
+  background:var(--glass-sheen),var(--glass-bg);
+  border:1px solid var(--glass-edge);
+  box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:var(--glass-filter);
+  backdrop-filter:var(--glass-filter);
+}
+.topbar { border-width:0 0 1px; }
+
+/* Button shape and spacing stay with the existing component. */
+:is(.btn,.primary-button,.icon-button,.pill,.field,.protection-link),
+.topbar .icon-button,
+.chips button,.feature-links button,.three-actions button,.category-grid button,
+.goal-empty-action .btn,.analytics-actions .btn.glass,
+.risk-questions label,.compare-select label,.research-grid .compare-select label,
+.statement-upload {
+  background:var(--glass-sheen),var(--glass-bg);
+  border:1px solid var(--glass-edge);
+  box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:var(--glass-filter);
+  backdrop-filter:var(--glass-filter);
+}
+.statement-upload { border-style:dashed; border-color:rgba(96,120,161,.4); }
+.protection-link { border-radius:999px; }
+.field { border-color:rgba(112,134,166,.2); }
+select option { background:#f9fbfe; color:var(--ink); }
+
+/* Tinted glass keeps action priority without opaque black or white fills. */
+.btn.primary,.btn.blue,.primary-button,
+.composer .send,.composer button[type=submit] {
+  background:var(--glass-sheen),var(--glass-primary);
+  border:1px solid rgba(123,153,209,.3);
+  color:#193b76;
+  box-shadow:var(--glass-shadow);
+}
+.btn.danger {
+  background:var(--glass-sheen),var(--glass-danger);
+  color:var(--danger);
+}
+.segmented button[aria-selected=true],
+.investment-sections button[aria-current=page],
+.tab-bar a[aria-current=page],
+.category-grid button.selected,
+.risk-questions label:has(input:checked),
+.compare-select label:has(input:checked) {
+  background:var(--glass-sheen),var(--glass-selected);
+  color:#244b89;
+  box-shadow:inset 0 0 0 1px var(--glass-edge),0 2px 8px rgba(42,69,113,.055);
+  font-weight:600;
+}
+.segmented button { min-height:44px; }
+.analytics-workspace .chart-toolbar .segmented button,
+.analytics-card-heading .segmented button { min-height:44px; }
+.switch { background:rgba(128,146,171,.28); box-shadow:inset 0 0 0 1px rgba(128,146,171,.18); }
+.switch:checked { background:rgba(66,104,174,.82); }
+.switch:before { background:linear-gradient(145deg,#fff,#e9f0fa); }
+
+/* Supporting surfaces stay light; charts and status colors retain their meaning. */
+.metric,.bubble {
+  background:var(--glass-sheen),var(--glass-bg);
+  box-shadow:var(--glass-shadow);
+}
+.user .bubble { background:var(--glass-sheen),var(--glass-primary); color:var(--ink); }
+.analytics-totals .metric { background:none; box-shadow:none; }
+.bill-icon { background:rgba(222,231,242,.5); }
+.stock-symbol { background:rgba(217,230,250,.48); }
+.operation-icon { background:rgba(220,236,225,.5); }
+.tag,.risk-pill { background:rgba(219,228,242,.5); }
+.tag.success { background:rgba(219,239,225,.6); }
+.tag.warning { background:rgba(251,235,205,.66); }
+.status,.context-notice,.chart-container .chart-value:not(:empty) { background:rgba(222,233,248,.5); }
+.planning-gap { background:rgba(248,232,217,.65); }
+.error { background:rgba(255,232,224,.76); }
+.sheet {
+  background:var(--glass-sheen),var(--glass-sheet);
+  border:1px solid var(--glass-edge);
+  box-shadow:0 -12px 48px rgba(31,49,73,.12),inset 0 1px 0 #fff;
+  -webkit-backdrop-filter:var(--glass-filter);
+  backdrop-filter:var(--glass-filter);
+}
+.sheet::backdrop { background:rgba(30,46,67,.22); -webkit-backdrop-filter:blur(1.5px); backdrop-filter:blur(1.5px); }
+#toast { background:rgba(28,44,65,.9); -webkit-backdrop-filter:var(--glass-filter); backdrop-filter:var(--glass-filter); }
+
+/* Row buttons remain rows; their hover treatment uses the same clear surface. */
+@media(hover:hover) {
+  :is(.btn,.primary-button,.icon-button,.pill):not(:disabled):hover,
+  :is(.chips,.feature-links,.three-actions,.category-grid) button:not(:disabled):hover {
+    background-color:var(--glass-hover);
+    box-shadow:var(--glass-shadow),0 4px 12px rgba(31,49,73,.04);
+  }
+  :is(.bill-row,.stock-row,.category-row,.news-row,.comparison-row,.donut-legend-row,
+      .template-item,.finance-contact,.finance-operation-row):is(button,a):hover {
+    background:var(--glass-sheen),var(--glass-bg);
+  }
+  .btn.primary:not(:disabled):hover,.btn.blue:not(:disabled):hover,
+  .primary-button:not(:disabled):hover,.composer button[type=submit]:not(:disabled):hover {
+    background-color:var(--glass-primary);
+    filter:brightness(1.04);
+  }
+  .btn.danger:not(:disabled):hover { background-color:var(--glass-danger); }
+}
+:is(button,a,input,select,textarea,summary):focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+:is(.btn,.icon-button,.pill,.chips button,.feature-links button,.three-actions button):not(:disabled):active { transform:translateY(1px); }
+button:disabled { opacity:.5; box-shadow:none; }
+
+/* All layers, including the body-level dialog, honor the existing preference. */
+[data-reduce-transparency=true] {
+  --glass-bg:#f9fbfe; --glass-sheen:linear-gradient(transparent,transparent);
+  --glass-filter:none; --glass-selected:#e2eafa; --glass-primary:#dce7fa;
+  --glass-danger:#ffeded; --glass-sheet:#f9fbfe; --glass-hover:#fff;
+}
+[data-reduce-transparency=true] .sheet::backdrop { -webkit-backdrop-filter:none; backdrop-filter:none; background:rgba(30,46,67,.35); }
+@media(prefers-reduced-transparency:reduce) {
+  :root {
+    --glass-bg:#f9fbfe; --glass-sheen:linear-gradient(transparent,transparent);
+    --glass-filter:none; --glass-selected:#e2eafa; --glass-primary:#dce7fa;
+    --glass-danger:#ffeded; --glass-sheet:#f9fbfe; --glass-hover:#fff;
+  }
+  .sheet::backdrop { -webkit-backdrop-filter:none; backdrop-filter:none; }
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+  :root {
+    --glass-bg:#f9fbfe; --glass-sheen:linear-gradient(transparent,transparent);
+    --glass-selected:#e2eafa; --glass-primary:#dce7fa; --glass-sheet:#f9fbfe;
+  }
+}
+
+/* Compact planning and filter details share the same glass surfaces. */
+.range-caption { display:grid; gap:4px; font-size:14px; }
+.profile-section { margin:20px 0; }
+.profile-section > summary { cursor:pointer; font-weight:650; padding:12px 0; }
+.cashflow-confirm { display:flex; align-items:flex-start; gap:10px; margin-top:16px; line-height:1.5; }
+.cashflow-confirm input { margin-top:4px; flex-shrink:0; }
+#bill-edit-form .field-label { margin-top:12px; }
